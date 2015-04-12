@@ -14,19 +14,31 @@ void setup()
 	void setupReceiverInput();
 	quadCopter.startUpNormal();
 	Wire.begin();
+
+	DEBUGSPRINTLN("setup end")
 }
 
 void loop()
 {
 	Gyroscope gyro;
+	Accelerometer accel;
 	if(gyro.isReady()) gyro.calibrateOffset();
 	
 	for(;;){
-		if(!gyro.isReady()) break;
-		gyro.update();
+		//if(!gyro.isReady()) break;
+		//gyro.update();
+		accel.update();
+
+		/*
 		DEBUGSPRINT(gyro.x) DEBUGSPRINT(", ")
 		DEBUGSPRINT(gyro.y) DEBUGSPRINT(", ")
 		DEBUGSPRINTLN(gyro.z)
+		*/
+
+		DEBUGSPRINT(accel.x) DEBUGSPRINT(", ")
+		DEBUGSPRINT(accel.y) DEBUGSPRINT(", ")
+		DEBUGSPRINTLN(accel.z)
+
 		delay(100);
 	}
 

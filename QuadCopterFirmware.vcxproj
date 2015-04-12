@@ -97,6 +97,7 @@
     <ClInclude Include="Visual Micro\.QuadCopterFirmware.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Accelerometer.cpp" />
     <ClCompile Include="Esc.cpp" />
     <ClCompile Include="EscStartupManager.cpp" />
     <ClCompile Include="Gyroscope.cpp" />

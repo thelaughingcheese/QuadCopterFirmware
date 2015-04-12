@@ -63,6 +63,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <QuadCopterFirmware.ino>
+#include <Accelerometer.cpp>
 #include <Accelerometer.h>
 #include <Barometer.h>
 #include <Esc.cpp>
@@ -74,6 +75,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Gps.h>
 #include <Gyroscope.cpp>
 #include <Gyroscope.h>
+#include <I2cDevice.cpp>
 #include <I2cDevice.h>
 #include <Magnetometer.h>
 #include <PidController.h>

@@ -9,8 +9,7 @@ http://www.adafruit.com/datasheets/L3GD20H.pdf
 #define CALIBRATION_JUNK 100
 #define CALIBRATION_SAMPLES 1000
 
-#include <Wire.h>
-#include "Globals.h"
+#include "I2cDevice.h"
 
 typedef enum
 {                                             // DEFAULT    TYPE
@@ -42,18 +41,12 @@ typedef enum
 	GYRO_REGISTER_INT1_DURATION       = 0x38    // 00000000   rw
 } gyroRegisters_t;
 
-class Gyroscope{
-private:
-	bool ready = false;
-
-	void writeRegister(uint8_t reg, uint8_t val);
-	uint8_t readRegister(uint8_t reg);
+class Gyroscope : public I2cDevice{
 public:
 	int16_t x,y,z;
 	int16_t xOffset,yOffset,zOffset;
 
 	Gyroscope();
-	bool isReady();
 	void update();
 	void calibrateOffset();
 };

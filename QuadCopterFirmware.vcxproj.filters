@@ -43,19 +43,19 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="I2cDevice.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="Esc.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="EscConfiguration.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="EscStartupManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="QuadCopter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="I2cDevice.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -76,6 +76,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="I2cDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Accelerometer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

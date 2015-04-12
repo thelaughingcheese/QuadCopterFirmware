@@ -22,6 +22,7 @@ increasing yaw rotates clockwise
 
 #include "EscStartupManager.h"
 #include "Gyroscope.h"
+#include "Accelerometer.h"
 
 class QuadCopter{
 private:

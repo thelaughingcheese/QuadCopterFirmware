@@ -1,10 +1,7 @@
 #include "Gyroscope.h"
 
 //configure
-Gyroscope::Gyroscope(){
-	//start wire
-	Wire.begin();
-
+Gyroscope::Gyroscope(): I2cDevice(L2GD20H_ADDRESS){
 	//check if device is correct
 	uint8_t who = readRegister(GYRO_REGISTER_WHO_AM_I);
 	if(who != 0xd7){
@@ -27,36 +24,13 @@ Gyroscope::Gyroscope(){
 	ready = true;
 }
 
-void Gyroscope::writeRegister(uint8_t reg,uint8_t val){
-	Wire.beginTransmission(L2GD20H_ADDRESS);
-	Wire.write(reg);
-	Wire.write(val);
-	Wire.endTransmission();
-}
-
-uint8_t Gyroscope::readRegister(uint8_t reg){
-	Wire.beginTransmission(L2GD20H_ADDRESS);
-	Wire.write(reg);
-	Wire.endTransmission();
-
-	Wire.requestFrom(L2GD20H_ADDRESS,1);
-	while(Wire.available()<1);
-	uint8_t rtn = Wire.read();
-	Wire.endTransmission();
-	return rtn;
-}
-
-bool Gyroscope::isReady(){
-	return ready;
-}
-
 //!!we need to handle errors here!
 void Gyroscope::update(){
-	Wire.beginTransmission(L2GD20H_ADDRESS);
+	Wire.beginTransmission(deviceAddress);
 	Wire.write(GYRO_REGISTER_OUT_X_L | 0x80);
 	Wire.endTransmission();
 
-	Wire.requestFrom(L2GD20H_ADDRESS,6);
+	Wire.requestFrom(deviceAddress,6);
 	while(Wire.available() < 6);
 	x = (Wire.read() | Wire.read() << 8) - xOffset;
 	y = (Wire.read() | Wire.read() << 8) - yOffset;
