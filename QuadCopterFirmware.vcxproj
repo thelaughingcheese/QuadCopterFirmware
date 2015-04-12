@@ -44,10 +44,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\cores\teensy3;C:\Users\Jason\Documents\Arduino\QuadCopterFirmware;G:\Program Files E\Arduino\arduino-1.0.6\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\libraries;G:\Program Files e (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers;C:\Users\Jason\Documents\Arduino\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>C:\Users\Jason\Documents\Arduino\QuadCopterFirmware\Visual Micro\.QuadCopterFirmware.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\cores\teensy3;G:\git\QuadCopterFirmware;G:\Program Files E\Arduino\arduino-1.0.6\libraries\Servo;G:\Program Files E\Arduino\arduino-1.0.6\libraries\Servo\utility;G:\Program Files E\Arduino\arduino-1.0.6\libraries\Wire;G:\Program Files E\Arduino\arduino-1.0.6\libraries\Wire\utility;G:\Program Files E\Arduino\arduino-1.0.6\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\libraries;G:\Program Files e (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers;C:\Users\Jason\Documents\Arduino\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>G:\git\QuadCopterFirmware\Visual Micro\.QuadCopterFirmware.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__ARM_MK20dx256__;__ARM_MK20DX256__;ARDUINO=106;ARDUINO_MAIN;__AVR__;__avr__;__cplusplus;GCC_VERSION=40804;ARDUINO_ARCH_AVR;ARDUINO_AVR_TEENSY31;__MK20DX256__;TEENSYDUINO=122;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__ARM_MK20dx256__;__ARM_MK20DX256__;ARDUINO=106;ARDUINO_MAIN;__AVR__;__avr__;F_CPU=96000000;USB_SERIAL_HID;LAYOUT_US_ENGLISH;__cplusplus;GCC_VERSION=40804;ARDUINO_ARCH_AVR;ARDUINO_AVR_TEENSY31;__MK20DX256__;TEENSYDUINO=122;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -75,15 +75,33 @@
   <ItemGroup>
     <ClInclude Include="Accelerometer.h" />
     <ClInclude Include="Barometer.h" />
+    <ClInclude Include="Esc.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="EscConfiguration.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="EscStartupManager.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GPS.h" />
     <ClInclude Include="Gyroscope.h" />
+    <ClInclude Include="I2cDevice.h" />
     <ClInclude Include="Magnetometer.h" />
     <ClInclude Include="PIDController.h" />
+    <ClInclude Include="QuadCopter.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClInclude Include="ReceiverInput.h" />
     <ClInclude Include="Visual Micro\.QuadCopterFirmware.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Esc.cpp" />
+    <ClCompile Include="EscStartupManager.cpp" />
+    <ClCompile Include="Gyroscope.cpp" />
+    <ClCompile Include="I2cDevice.cpp" />
+    <ClCompile Include="QuadCopter.cpp" />
     <ClCompile Include="ReceiverInput.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

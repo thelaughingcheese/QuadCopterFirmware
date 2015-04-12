@@ -74,6 +74,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Gps.h>
 #include <Gyroscope.cpp>
 #include <Gyroscope.h>
+#include <I2cDevice.h>
 #include <Magnetometer.h>
 #include <PidController.h>
 #include <QuadCopter.cpp>

@@ -2,6 +2,9 @@
 
 //configure
 Gyroscope::Gyroscope(){
+	//start wire
+	Wire.begin();
+
 	//check if device is correct
 	uint8_t who = readRegister(GYRO_REGISTER_WHO_AM_I);
 	if(who != 0xd7){
