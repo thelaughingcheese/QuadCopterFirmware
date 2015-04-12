@@ -43,10 +43,21 @@ typedef enum
 
 class Gyroscope : public I2cDevice{
 public:
+	typedef enum{
+		DPS245 = 0x00,
+		DPS500 = 0x10,
+		DPS2000 = 0x20
+	} MaxAngularVelocity;
+private:
+	MaxAngularVelocity maxAngularVelocity;
+public:
 	int16_t x,y,z;
 	int16_t xOffset,yOffset,zOffset;
 
+	float convertAngularVelocity(int16_t angularVelocity);
+
 	Gyroscope();
+	void setMaxAngularVelocity(MaxAngularVelocity max);
 	void update();
 	void calibrateOffset();
 };

@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\10DOF Adafruit Sensor">
+      <UniqueIdentifier>{542d7e05-c8ab-49dc-9029-6aab286acfa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ESC">
+      <UniqueIdentifier>{c9bced1c-ce58-4f6a-9b28-636ee103b936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Receiver">
+      <UniqueIdentifier>{07a7d836-8282-428c-a3fe-564249c5e9ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{6f151a73-a4dc-4c9f-a9c0-ee0b18d76ef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GPS">
+      <UniqueIdentifier>{3998d4a7-398f-462d-8305-5ffba278058b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Quadcopter Control">
+      <UniqueIdentifier>{0596b5c7-33ec-4806-be3f-c527e0a942d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="QuadCopterFirmware.ino" />
@@ -21,65 +39,79 @@
     <ClInclude Include="Visual Micro\.QuadCopterFirmware.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReceiverInput.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gyroscope.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Accelerometer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Magnetometer.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
     </ClInclude>
     <ClInclude Include="Barometer.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
     </ClInclude>
-    <ClInclude Include="PIDController.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GPS.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="I2cDevice.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Esc.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EscConfiguration.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Gyroscope.h">
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
     </ClInclude>
     <ClInclude Include="EscStartupManager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ESC</Filter>
+    </ClInclude>
+    <ClInclude Include="Esc.h">
+      <Filter>Source Files\ESC</Filter>
+    </ClInclude>
+    <ClInclude Include="EscConfiguration.h">
+      <Filter>Source Files\ESC</Filter>
+    </ClInclude>
+    <ClInclude Include="Magnetometer.h">
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceiverInput.h">
+      <Filter>Source Files\Receiver</Filter>
+    </ClInclude>
+    <ClInclude Include="I2cDevice.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="GPS.h">
+      <Filter>Source Files\GPS</Filter>
+    </ClInclude>
+    <ClInclude Include="PIDController.h">
+      <Filter>Source Files\Quadcopter Control</Filter>
     </ClInclude>
     <ClInclude Include="QuadCopter.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Quadcopter Control</Filter>
+    </ClInclude>
+    <ClInclude Include="AttitudeMeasurement.h">
+      <Filter>Source Files\Quadcopter Control</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ReceiverInput.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Accelerometer.cpp">
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
     </ClCompile>
-    <ClCompile Include="Esc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EscStartupManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Barometer.cpp">
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
     </ClCompile>
     <ClCompile Include="Gyroscope.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
     </ClCompile>
-    <ClCompile Include="QuadCopter.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Esc.cpp">
+      <Filter>Source Files\ESC</Filter>
+    </ClCompile>
+    <ClCompile Include="EscStartupManager.cpp">
+      <Filter>Source Files\ESC</Filter>
+    </ClCompile>
+    <ClCompile Include="Magnetometer.cpp">
+      <Filter>Source Files\10DOF Adafruit Sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceiverInput.cpp">
+      <Filter>Source Files\Receiver</Filter>
     </ClCompile>
     <ClCompile Include="I2cDevice.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Accelerometer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="QuadCopter.cpp">
+      <Filter>Source Files\Quadcopter Control</Filter>
+    </ClCompile>
+    <ClCompile Include="AttitudeMeasurement.cpp">
+      <Filter>Source Files\Quadcopter Control</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

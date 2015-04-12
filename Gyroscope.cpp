@@ -1,5 +1,23 @@
 #include "Gyroscope.h"
 
+float Gyroscope::convertAngularVelocity(int16_t angularVelocity){
+	int wordSignedMaxValue = 0x7fff;
+
+	float maxVelocity;
+
+	if(maxAngularVelocity == DPS245){
+		maxVelocity = 245;
+	}
+	else if(maxAngularVelocity == DPS500){
+		maxVelocity = 500;
+	}
+	else{
+		maxVelocity = 2000;
+	}
+
+	return (maxVelocity*angularVelocity) / wordSignedMaxValue;
+}
+
 //configure
 Gyroscope::Gyroscope(): I2cDevice(L2GD20H_ADDRESS){
 	//check if device is correct
@@ -15,13 +33,19 @@ Gyroscope::Gyroscope(): I2cDevice(L2GD20H_ADDRESS){
 	writeRegister(GYRO_REGISTER_CTRL_REG1,0x00);
 	writeRegister(GYRO_REGISTER_CTRL_REG1,0xff);
 
-	//set config reg 4
-	writeRegister(GYRO_REGISTER_CTRL_REG4,0x00);
+	//set config reg 4, default 245 dps
+	maxAngularVelocity = DPS245;
+	writeRegister(GYRO_REGISTER_CTRL_REG4,maxAngularVelocity);
 
 	x=0;y=0;z=0;
 	xOffset=0;yOffset=0;zOffset=0;
 
 	ready = true;
+}
+
+void Gyroscope::setMaxAngularVelocity(Gyroscope::MaxAngularVelocity max){
+	maxAngularVelocity = max;
+	writeRegister(GYRO_REGISTER_CTRL_REG4,max);
 }
 
 //!!we need to handle errors here!

@@ -22,12 +22,14 @@ void loop()
 {
 	Gyroscope gyro;
 	Accelerometer accel;
+	Magnetometer mag;
 	if(gyro.isReady()) gyro.calibrateOffset();
 	
 	for(;;){
 		//if(!gyro.isReady()) break;
 		//gyro.update();
-		accel.update();
+		//accel.update();
+		mag.update();
 
 		/*
 		DEBUGSPRINT(gyro.x) DEBUGSPRINT(", ")
@@ -35,9 +37,15 @@ void loop()
 		DEBUGSPRINTLN(gyro.z)
 		*/
 
+		/*
 		DEBUGSPRINT(accel.x) DEBUGSPRINT(", ")
 		DEBUGSPRINT(accel.y) DEBUGSPRINT(", ")
 		DEBUGSPRINTLN(accel.z)
+		*/
+
+		DEBUGSPRINT(mag.x) DEBUGSPRINT(", ")
+		DEBUGSPRINT(mag.y) DEBUGSPRINT(", ")
+		DEBUGSPRINTLN(mag.z)
 
 		delay(100);
 	}

@@ -21,11 +21,12 @@ increasing yaw rotates clockwise
 #define QUADCOPTER
 
 #include "EscStartupManager.h"
-#include "Gyroscope.h"
-#include "Accelerometer.h"
+#include "AttitudeMeasurement.h"
 
 class QuadCopter{
 private:
+	AttitudeMeasurement attitudeMeasurement;
+
 	Esc rotors[4];
 	long rotorMax;
 	long rotorMin;

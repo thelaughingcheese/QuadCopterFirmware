@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Accelerometer.h" />
+    <ClInclude Include="AttitudeMeasurement.h" />
     <ClInclude Include="Barometer.h" />
     <ClInclude Include="Esc.h">
       <FileType>CppCode</FileType>
@@ -98,10 +99,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Accelerometer.cpp" />
+    <ClCompile Include="AttitudeMeasurement.cpp" />
+    <ClCompile Include="Barometer.cpp" />
     <ClCompile Include="Esc.cpp" />
     <ClCompile Include="EscStartupManager.cpp" />
     <ClCompile Include="Gyroscope.cpp" />
     <ClCompile Include="I2cDevice.cpp" />
+    <ClCompile Include="Magnetometer.cpp" />
     <ClCompile Include="QuadCopter.cpp" />
     <ClCompile Include="ReceiverInput.cpp" />
   </ItemGroup>

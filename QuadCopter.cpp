@@ -1,6 +1,9 @@
 #include "QuadCopter.h"
 
 QuadCopter::QuadCopter(int a,int b,int c,int d,int max,int min){
+	//sensor setup
+
+	//rotor setup
 	rotorMax = max;
 	rotorMin = min;
 

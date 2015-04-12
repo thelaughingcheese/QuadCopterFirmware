@@ -1,7 +1,7 @@
 #ifndef ACCELEROMETER
 #define ACCELEROMETER
 
-#define LSM303_ADDRESS (0x32 >> 1)
+#define LSM303_ADDRESS_ACC (0x32 >> 1)
 
 #include "I2cDevice.h"
 

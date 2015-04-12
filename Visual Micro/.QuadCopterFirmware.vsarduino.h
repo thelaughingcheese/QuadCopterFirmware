@@ -65,6 +65,9 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <QuadCopterFirmware.ino>
 #include <Accelerometer.cpp>
 #include <Accelerometer.h>
+#include <AttitudeMeasurement.cpp>
+#include <AttitudeMeasurement.h>
+#include <Barometer.cpp>
 #include <Barometer.h>
 #include <Esc.cpp>
 #include <Esc.h>
@@ -77,6 +80,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Gyroscope.h>
 #include <I2cDevice.cpp>
 #include <I2cDevice.h>
+#include <Magnetometer.cpp>
 #include <Magnetometer.h>
 #include <PidController.h>
 #include <QuadCopter.cpp>

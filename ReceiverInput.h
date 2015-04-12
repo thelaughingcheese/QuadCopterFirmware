@@ -14,11 +14,11 @@
 #define CH8PIN 23
 
 //channel aliases
-#define ROLL ch1
-#define PITCH ch2
-#define THROTTLE ch3
-#define YAW ch4
-#define MODE ch5
+#define ROLL_CHANNEL ch1
+#define PITCH_CHANNEL ch2
+#define THROTTLE_CHANNEL ch3
+#define YAW_CHANNEL ch4
+#define MODE_CHANNEL ch5
 
 //pulse start
 extern volatile unsigned long ch1Start;
