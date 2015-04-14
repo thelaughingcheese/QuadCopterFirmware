@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Quadcopter Control">
       <UniqueIdentifier>{0596b5c7-33ec-4806-be3f-c527e0a942d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Flight Control">
+      <UniqueIdentifier>{0af6911e-5318-48cd-bb73-8f00a8b9587d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="QuadCopterFirmware.ino" />
@@ -72,15 +75,16 @@
     <ClInclude Include="GPS.h">
       <Filter>Source Files\GPS</Filter>
     </ClInclude>
-    <ClInclude Include="PIDController.h">
-      <Filter>Source Files\Quadcopter Control</Filter>
-    </ClInclude>
     <ClInclude Include="QuadCopter.h">
       <Filter>Source Files\Quadcopter Control</Filter>
     </ClInclude>
     <ClInclude Include="AttitudeMeasurement.h">
-      <Filter>Source Files\Quadcopter Control</Filter>
+      <Filter>Source Files\Flight Control</Filter>
     </ClInclude>
+    <ClInclude Include="PidController.h">
+      <Filter>Source Files\Flight Control</Filter>
+    </ClInclude>
+    <ClInclude Include="tests.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Accelerometer.cpp">
@@ -111,7 +115,11 @@
       <Filter>Source Files\Quadcopter Control</Filter>
     </ClCompile>
     <ClCompile Include="AttitudeMeasurement.cpp">
-      <Filter>Source Files\Quadcopter Control</Filter>
+      <Filter>Source Files\Flight Control</Filter>
     </ClCompile>
+    <ClCompile Include="PidController.cpp">
+      <Filter>Source Files\Flight Control</Filter>
+    </ClCompile>
+    <ClCompile Include="tests.cpp" />
   </ItemGroup>
 </Project>

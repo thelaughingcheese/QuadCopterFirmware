@@ -82,9 +82,12 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <I2cDevice.h>
 #include <Magnetometer.cpp>
 #include <Magnetometer.h>
+#include <PidController.cpp>
 #include <PidController.h>
 #include <QuadCopter.cpp>
 #include <QuadCopter.h>
 #include <ReceiverInput.cpp>
 #include <ReceiverInput.h>
+#include <tests.cpp>
+#include <tests.h>
 #endif

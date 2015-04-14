@@ -10,3 +10,9 @@
 	#define DEBUGSPRINTLN ;
 	#define DEBUGSBEGIN ;
 #endif
+
+#define INT_LONG_MAX ((long)0x7fffffff)
+#define INT_LONG_MIN ((long)0x80000000)
+
+#define INT_SHORT_MAX ((short)0x7fff)
+#define INT_SHORT_MIN ((short)0x8000)

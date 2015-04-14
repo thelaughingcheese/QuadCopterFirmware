@@ -90,11 +90,12 @@
     <ClInclude Include="Gyroscope.h" />
     <ClInclude Include="I2cDevice.h" />
     <ClInclude Include="Magnetometer.h" />
-    <ClInclude Include="PIDController.h" />
+    <ClInclude Include="PidController.h" />
     <ClInclude Include="QuadCopter.h">
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClInclude Include="ReceiverInput.h" />
+    <ClInclude Include="tests.h" />
     <ClInclude Include="Visual Micro\.QuadCopterFirmware.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -106,8 +107,10 @@
     <ClCompile Include="Gyroscope.cpp" />
     <ClCompile Include="I2cDevice.cpp" />
     <ClCompile Include="Magnetometer.cpp" />
+    <ClCompile Include="PidController.cpp" />
     <ClCompile Include="QuadCopter.cpp" />
     <ClCompile Include="ReceiverInput.cpp" />
+    <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

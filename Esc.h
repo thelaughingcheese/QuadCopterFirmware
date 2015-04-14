@@ -16,8 +16,8 @@ public:
 
 	Esc();
 	Esc(int pin, long max, long min);
-	void setup(int pin,long max,long min);
-	void set(int);
+	void setup(int pin,short max,short min);
+	void set(short val);
 };
 
 #endif
