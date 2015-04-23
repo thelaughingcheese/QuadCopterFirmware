@@ -12,7 +12,3 @@ void Esc::setup(int pin,short max,short min){
 	maxPulse = max;
 	minPulse = min;
 }
-
-void Esc::set(short width){
-	esc.writeMicroseconds(width);
-}

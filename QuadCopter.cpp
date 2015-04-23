@@ -1,8 +1,6 @@
 #include "QuadCopter.h"
 
 QuadCopter::QuadCopter(int a,int b,int c,int d,int max,int min){
-	//sensor setup
-
 	//rotor setup
 	rotorMax = max;
 	rotorMin = min;
@@ -12,6 +10,8 @@ QuadCopter::QuadCopter(int a,int b,int c,int d,int max,int min){
 	rotors[1].setup(b,rotorMin,rotorMax);
 	rotors[2].setup(c,rotorMin,rotorMax);
 	rotors[3].setup(d,rotorMin,rotorMax);
+
+	pitch = 0; roll = 0; yaw = 0; throttle = 0;
 }
 
 //blocks until finished!
@@ -63,4 +63,8 @@ void QuadCopter::update(){
 	rotors[1].set(b);
 	rotors[2].set(c);
 	rotors[3].set(d);
+}
+
+int QuadCopter::getRotorValue(int rotor){
+	return rotors[rotor].get();
 }

@@ -17,7 +17,8 @@ public:
 	Esc();
 	Esc(int pin, long max, long min);
 	void setup(int pin,short max,short min);
-	void set(short val);
+	void set(short width){ esc.writeMicroseconds(width); }
+	short get(){ return esc.readMicroseconds(); }
 };
 
 #endif

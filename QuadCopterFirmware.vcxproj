@@ -85,6 +85,7 @@
     <ClInclude Include="EscStartupManager.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="FlightController.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GPS.h" />
     <ClInclude Include="Gyroscope.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="Barometer.cpp" />
     <ClCompile Include="Esc.cpp" />
     <ClCompile Include="EscStartupManager.cpp" />
+    <ClCompile Include="FlightController.cpp" />
     <ClCompile Include="Gyroscope.cpp" />
     <ClCompile Include="I2cDevice.cpp" />
     <ClCompile Include="Magnetometer.cpp" />

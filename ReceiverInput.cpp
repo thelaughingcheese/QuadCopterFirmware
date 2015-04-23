@@ -1,4 +1,5 @@
 #include "ReceiverInput.h"
+#include "Globals.h"
 
 //pulse start
 volatile unsigned long ch1Start = 0;
@@ -22,6 +23,8 @@ volatile long ch7 = 0;
 volatile long ch8 = 0;
 volatile long ch9 = 0;
 
+volatile long channelCenterValue;
+
 void setupReceiverInput(){
 	pinMode(CH1PIN,INPUT);
 	pinMode(CH2PIN,INPUT);
@@ -42,6 +45,15 @@ void setupReceiverInput(){
 	attachInterrupt(CH7PIN,ch7Change,CHANGE);
 	attachInterrupt(CH8PIN,ch8Change,CHANGE);
 	//attachInterrupt(CH9PIN,ch9Change,CHANGE);
+}
+
+void calibrateChannelCenterValue(){
+	delay(1000);
+	long total = 0;
+	for(int i=0; i<1000; i++){
+		total += ROLL_CHANNEL + PITCH_CHANNEL + YAW_CHANNEL;
+	}
+	channelCenterValue = total / 3000;
 }
 
 void ch1Change(){

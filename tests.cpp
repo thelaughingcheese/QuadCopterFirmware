@@ -1,4 +1,5 @@
 #include "tests.h"
+#include "ReceiverInput.h"
 
 void gyroTest(){
 	Gyroscope gyro;
@@ -54,6 +55,24 @@ void attTest(){
 		DEBUGSPRINT(att.getAxisAngleAbsolute(att.ROLL)) DEBUGSPRINT(", ")
 		DEBUGSPRINT(att.getAxisAngleAbsolute(att.YAW)) DEBUGSPRINT("\n")
 
+		delay(100);
+	}
+}
+
+void quadTest(){
+	QuadCopter quadCopter(3,4,5,6,2000,700);
+	for(;;){
+		while(Serial.available() < 1);
+		quadCopter.throttle = Serial.parseInt();
+		quadCopter.update();
+		DEBUGSPRINTLN(quadCopter.getRotorValue(0))
+	}
+}
+
+void receiverTest(){
+	for(;;){
+		DEBUGSPRINT(channelCenterValue)DEBUGSPRINT(", ")
+		DEBUGSPRINT(PITCH_CHANNEL)DEBUGSPRINT("\n")
 		delay(100);
 	}
 }

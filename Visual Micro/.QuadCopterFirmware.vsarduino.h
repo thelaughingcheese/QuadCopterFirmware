@@ -74,6 +74,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <EscConfiguration.h>
 #include <EscStartupManager.cpp>
 #include <EscStartupManager.h>
+#include <FlightController.cpp>
+#include <FlightController.h>
 #include <Globals.h>
 #include <Gps.h>
 #include <Gyroscope.cpp>

@@ -14,6 +14,7 @@ public:
 
 	PidController(float p, float i, float d);
 	float update(float input);
+	void resetIComponent();
 };
 
 #endif

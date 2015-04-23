@@ -3,22 +3,25 @@
 
 #include "Arduino.h"
 
-#define CH1PIN 16
-#define CH2PIN 17
-#define CH3PIN 18
-#define CH4PIN 19
-#define CH5PIN 20
+#define CHCENTERVAL 1493
+#define CHMAXVAL 430
 
-#define CH6PIN 21
-#define CH7PIN 22
-#define CH8PIN 23
+#define CH1PIN 23
+#define CH2PIN 22
+#define CH3PIN 21
+#define CH4PIN 20
+
+#define CH5PIN 7
+#define CH6PIN 8
+#define CH7PIN 9
+#define CH8PIN 10
 
 //channel aliases
-#define ROLL_CHANNEL ch1
-#define PITCH_CHANNEL ch2
-#define THROTTLE_CHANNEL ch3
-#define YAW_CHANNEL ch4
-#define MODE_CHANNEL ch5
+#define ROLL_CHANNEL (ch1-CHCENTERVAL)
+#define PITCH_CHANNEL (ch2-CHCENTERVAL)
+#define THROTTLE_CHANNEL (ch3-CHCENTERVAL)
+#define YAW_CHANNEL (ch4-CHCENTERVAL)
+#define MODE_CHANNEL (ch5-CHCENTERVAL)
 
 //pulse start
 extern volatile unsigned long ch1Start;
@@ -42,7 +45,10 @@ extern volatile long ch7;
 extern volatile long ch8;
 //extern volatile long ch9;
 
+extern volatile long channelCenterValue;
+
 void setupReceiverInput();
+void calibrateChannelCenterValue();
 
 void ch1Change();
 void ch2Change();

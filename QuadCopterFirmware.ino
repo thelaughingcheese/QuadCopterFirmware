@@ -4,26 +4,33 @@
 #include "ReceiverInput.h"
 #include "QuadCopter.h"
 #include "AttitudeMeasurement.h"
+#include "FlightController.h"
 
 #include "tests.h"
 
 QuadCopter quadCopter(3,4,5,6,2000,700);
+AttitudeMeasurement attitudeMeasurement(AttitudeMeasurement::PITCH,AttitudeMeasurement::ROLL,AttitudeMeasurement::YAW);
 
 void setup()
 {
 	DEBUGSBEGIN
 	DEBUGSPRINTLN("start")
 
-	void setupReceiverInput();
-	//quadCopter.startUpNormal();
-	Wire.begin();
+	quadCopter.startUpNormal();
+
+	setupReceiverInput();
+	//calibrateChannelCenterValue();
 
 	DEBUGSPRINTLN("setup end")
 }
 
 void loop()
 {
+	//FlightController controller(&quadCopter,&attitudeMeasurement);
+	//controller.begin();
 
+	//quadTest();
+	receiverTest();
 
 	DEBUGSPRINTLN("shutting down!")
 	for(pinMode(13,OUTPUT);;){ 

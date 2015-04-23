@@ -41,6 +41,7 @@ public:
 	void startSetConfigAndStart(EscConfiguration config);
 
 	void update();
+	int getRotorValue(int rotor);
 };
 
 #endif

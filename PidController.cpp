@@ -28,3 +28,7 @@ float PidController::update(float input){
 
 	return pComponent + iComponent + dComponent;
 }
+
+void PidController::resetIComponent(){
+	errorIntegral = 0;
+}
