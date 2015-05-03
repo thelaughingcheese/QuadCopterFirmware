@@ -10,7 +10,7 @@ void EscStartupManager::startupAllNormal(){
 		esc[i].set(esc[i].getMinPulse());
 	}
 
-	delay(5000);
+	delay(5500);
 }
 
 void EscStartupManager::setConfigurationAll(EscConfiguration config){

@@ -11,7 +11,8 @@ class FlightController{
 public:
 	typedef enum{
 		ATTITUDE_CONTROLLED = 0x01,
-		RATE_CONTROLLED = 0x02
+		RATE_CONTROLLED = 0x02,
+		RAW_CONTROLLED = 0x03
 	} FlightMode;
 private:
 	QuadCopter* quadCopter;
@@ -20,6 +21,7 @@ private:
 
 	PidController pitchControl;
 	PidController rollControl;
+	PidController yawControl;
 public:
 	FlightController(QuadCopter* copter, AttitudeMeasurement* att);
 	void setMode(FlightMode mode);

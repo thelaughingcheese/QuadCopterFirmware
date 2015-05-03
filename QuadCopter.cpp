@@ -6,10 +6,10 @@ QuadCopter::QuadCopter(int a,int b,int c,int d,int max,int min){
 	rotorMin = min;
 	rotorRange = max-min;
 
-	rotors[0].setup(a,rotorMin,rotorMax);
-	rotors[1].setup(b,rotorMin,rotorMax);
-	rotors[2].setup(c,rotorMin,rotorMax);
-	rotors[3].setup(d,rotorMin,rotorMax);
+	rotors[0].setup(a,rotorMax,rotorMin);
+	rotors[1].setup(b,rotorMax,rotorMin);
+	rotors[2].setup(c,rotorMax,rotorMin);
+	rotors[3].setup(d,rotorMax,rotorMin);
 
 	pitch = 0; roll = 0; yaw = 0; throttle = 0;
 }

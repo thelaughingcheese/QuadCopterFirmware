@@ -3,11 +3,16 @@
 #define MICRO_TO_SEC_RATIO 0.000001
 
 PidController::PidController(float p,float i,float d){
+	setGains(p,i,d);
+	resetIComponent();
+
+	lastUpdate = micros();
+}
+
+void PidController::setGains(float p,float i,float d){
 	pGain = p;
 	iGain = i;
 	dGain = d;
-
-	lastUpdate = micros();
 }
 
 float PidController::update(float input){

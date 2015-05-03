@@ -13,6 +13,7 @@ public:
 	float target;
 
 	PidController(float p, float i, float d);
+	void setGains(float p,float i,float d);
 	float update(float input);
 	void resetIComponent();
 };

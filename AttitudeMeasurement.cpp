@@ -12,6 +12,8 @@ AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z){
 	roll = 0;
 	yaw = 0;
 
+	gyroscope.calibrateOffset();
+
 	lastUpdate = micros();
 }
 
@@ -102,7 +104,7 @@ void AttitudeMeasurement::update(){
 	float predictedRoll = roll + getAxisAngleRate(ROLL)*deltaTime;
 	float predictedYaw = yaw + getAxisAngleRate(YAW)*deltaTime;
 
-	pitch = 0.98*getAccelerometerAxisAngle(PITCH) + 0.02*predictedPitch;
-	roll = 0.98*getAccelerometerAxisAngle(ROLL) + 0.02*predictedRoll;
-	yaw = 0.98*getAccelerometerAxisAngle(YAW) + 0.02*predictedYaw;
+	pitch = 0.99*getAccelerometerAxisAngle(PITCH) + 0.01*predictedPitch;
+	roll = 0.99*getAccelerometerAxisAngle(ROLL) + 0.01*predictedRoll;
+	yaw = 0.99*getAccelerometerAxisAngle(YAW) + 0.01*predictedYaw;
 }

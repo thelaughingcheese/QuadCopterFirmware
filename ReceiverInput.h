@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-#define CHCENTERVAL 1493
+#define CHCENTERVAL 1490
 #define CHMAXVAL 430
 
 #define CH1PIN 23
@@ -16,12 +16,14 @@
 #define CH7PIN 9
 #define CH8PIN 10
 
+//SAFETEY LIMITS!!!
+
 //channel aliases
-#define ROLL_CHANNEL (ch1-CHCENTERVAL)
-#define PITCH_CHANNEL (ch2-CHCENTERVAL)
-#define THROTTLE_CHANNEL (ch3-CHCENTERVAL)
-#define YAW_CHANNEL (ch4-CHCENTERVAL)
-#define MODE_CHANNEL (ch5-CHCENTERVAL)
+#define ROLL_CHANNEL (min(max(ch1-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
+#define PITCH_CHANNEL (min(max(ch2-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
+#define THROTTLE_CHANNEL (min(max(ch3-CHCENTERVAL+CHMAXVAL-30,0),CHMAXVAL*2))
+#define YAW_CHANNEL (min(max(ch4-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
+#define THROTTLE_CUT_CHANNEL (min(max(ch5-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
 
 //pulse start
 extern volatile unsigned long ch1Start;
