@@ -3,12 +3,12 @@
 #define MAXANGLE 45
 
 FlightController::FlightController(QuadCopter* copter,AttitudeMeasurement* att):
-pitchControl(100,0,0),
-rollControl(100,0,0),
-yawControl(100,0,0){
+pitchControl(0,0,0),
+rollControl(0,0,0),
+yawControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
-	setMode(RATE_CONTROLLED);
+	setMode(ATTITUDE_CONTROLLED);
 }
 
 void FlightController::setMode(FlightMode mode){
@@ -16,6 +16,16 @@ void FlightController::setMode(FlightMode mode){
 }
 
 void FlightController::begin(){
+	//hold until throttle is 0
+	while(THROTTLE_CUT_CHANNEL > 0 || (THROTTLE_CHANNEL*INT_SHORT_MAX)/(CHMAXVAL*2) > 0){
+		digitalWriteFast(13,HIGH);
+		delay(500);
+		digitalWriteFast(13,LOW);
+		delay(500);
+
+		DEBUGSPRINTLN("Throttledown to start!");
+	}
+
 	for(;;){
 		if(THROTTLE_CUT_CHANNEL < 0){
 			quadCopter->throttle = 0;
@@ -30,6 +40,10 @@ void FlightController::begin(){
 		}
 
 		if(flightMode == ATTITUDE_CONTROLLED){
+			pitchControl.setGains(300,0,0);
+			rollControl.setGains(300,0,0);
+			yawControl.setGains(100,0,0);
+
 			//read receiver, convert to angle
 			long pitchAngle = (PITCH_CHANNEL*MAXANGLE)/CHMAXVAL;
 			long rollAngle = (ROLL_CHANNEL*MAXANGLE)/CHMAXVAL;
@@ -67,10 +81,13 @@ void FlightController::begin(){
 				DEBUGSPRINT(attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW)); DEBUGSPRINT("\n");
 				*/
 
-				analogWrite(A14,(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::ROLL))*255/90);
+			analogWriteDAC0((attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH)+90)*4069/180);
 		}
 		else if(flightMode == RATE_CONTROLLED){
-			//read receiver
+			pitchControl.setGains(100,0,0);
+			rollControl.setGains(100,0,0);
+			yawControl.setGains(100,0,0);
+
 			//read receiver, convert to angle
 			long pitchRate = (PITCH_CHANNEL*90)/CHMAXVAL;
 			long rollRate = (ROLL_CHANNEL*90)/CHMAXVAL;
@@ -94,6 +111,13 @@ void FlightController::begin(){
 			quadCopter->roll = min(max(rollOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->yaw = min(max(yawOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->update();
+
+			
+			DEBUGSPRINT(quadCopter->throttle); DEBUGSPRINT(", ");
+			DEBUGSPRINT(quadCopter->pitch); DEBUGSPRINT(", ");
+			DEBUGSPRINT(quadCopter->roll); DEBUGSPRINT(", ");
+			DEBUGSPRINT(quadCopter->yaw); DEBUGSPRINT("\n");
+			
 		}
 		else if(flightMode == RAW_CONTROLLED){
 			//read receiver
@@ -114,7 +138,7 @@ void FlightController::begin(){
 			break;
 		}
 
-		delay(1);	//remove this and see what happens
+		//delay(1);	//remove this and see what happens
 
 		//benchmarking
 		pinMode(0,OUTPUT);

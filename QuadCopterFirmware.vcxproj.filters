@@ -88,6 +88,9 @@
     <ClInclude Include="FlightController.h">
       <Filter>Source Files\Flight Control</Filter>
     </ClInclude>
+    <ClInclude Include="LowPassSensorFilter.h">
+      <Filter>Source Files\Flight Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Accelerometer.cpp">

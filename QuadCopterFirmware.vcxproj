@@ -90,6 +90,7 @@
     <ClInclude Include="GPS.h" />
     <ClInclude Include="Gyroscope.h" />
     <ClInclude Include="I2cDevice.h" />
+    <ClInclude Include="LowPassSensorFilter.h" />
     <ClInclude Include="Magnetometer.h" />
     <ClInclude Include="PidController.h" />
     <ClInclude Include="QuadCopter.h">

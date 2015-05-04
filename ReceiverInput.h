@@ -24,6 +24,7 @@
 #define THROTTLE_CHANNEL (min(max(ch3-CHCENTERVAL+CHMAXVAL-30,0),CHMAXVAL*2))
 #define YAW_CHANNEL (min(max(ch4-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
 #define THROTTLE_CUT_CHANNEL (min(max(ch5-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
+#define MODE_CHANNEL (min(max(ch6-CHCENTERVAL,-CHMAXVAL),CHMAXVAL))
 
 //pulse start
 extern volatile unsigned long ch1Start;

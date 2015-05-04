@@ -3,7 +3,6 @@
 Accelerometer::Accelerometer(): I2cDevice(LSM303_ADDRESS_ACC){
 	//enable accelerometer at 400hz
 	writeRegister(LSM303_REGISTER_ACCEL_CTRL_REG1_A,0x77);
-	digitalWriteFast(13,HIGH);
 	//assume its all good
 	//uint8_t reg1_a = readRegister(LSM303_REGISTER_ACCEL_CTRL_REG1_A);
 	//DEBUGSPRINTLN((reg1_a,HEX));

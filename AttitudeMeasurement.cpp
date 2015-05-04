@@ -104,7 +104,10 @@ void AttitudeMeasurement::update(){
 	float predictedRoll = roll + getAxisAngleRate(ROLL)*deltaTime;
 	float predictedYaw = yaw + getAxisAngleRate(YAW)*deltaTime;
 
-	pitch = 0.99*getAccelerometerAxisAngle(PITCH) + 0.01*predictedPitch;
-	roll = 0.99*getAccelerometerAxisAngle(ROLL) + 0.01*predictedRoll;
-	yaw = 0.99*getAccelerometerAxisAngle(YAW) + 0.01*predictedYaw;
+	pitch = 0.98*predictedPitch + 0.02*getAccelerometerAxisAngle(PITCH);
+	roll = 0.98*predictedRoll + 0.02*getAccelerometerAxisAngle(ROLL);
+	yaw = 0.98*predictedYaw + 0.02*getAccelerometerAxisAngle(YAW);
+
+	//debug!! vibration analysis
+	//analogWriteDAC0((getAxisAngleRate(PITCH)+INT_SHORT_MAX)*4069/(INT_SHORT_MAX*2));
 }
