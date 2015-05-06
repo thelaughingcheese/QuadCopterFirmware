@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Flight Control">
       <UniqueIdentifier>{0af6911e-5318-48cd-bb73-8f00a8b9587d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Modified Wire lib">
+      <UniqueIdentifier>{a6f7a196-bcd6-4878-ace9-c8bb6d739ee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modified Wire lib\utility">
+      <UniqueIdentifier>{a0791648-a2c3-4156-a9e0-43c455ad87fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="QuadCopterFirmware.ino" />
@@ -91,6 +97,12 @@
     <ClInclude Include="LowPassSensorFilter.h">
       <Filter>Source Files\Flight Control</Filter>
     </ClInclude>
+    <ClInclude Include="Wire.h">
+      <Filter>Source Files\Modified Wire lib</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\twi.h">
+      <Filter>Source Files\Modified Wire lib\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Accelerometer.cpp">
@@ -130,5 +142,14 @@
     <ClCompile Include="FlightController.cpp">
       <Filter>Source Files\Flight Control</Filter>
     </ClCompile>
+    <ClCompile Include="Wire.cpp">
+      <Filter>Source Files\Modified Wire lib</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\twi.c">
+      <Filter>Source Files\Modified Wire lib\utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="wire calls.txt" />
   </ItemGroup>
 </Project>

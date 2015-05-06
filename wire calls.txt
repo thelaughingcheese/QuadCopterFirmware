@@ -1,0 +1,17 @@
+read
+	-
+write
+	twi_transmit
+		-
+available
+	-
+beginTransmission
+	-
+endTransmission
+	twi_writeTo(txAddress, txBuffer, txBufferLength, 1, sendStop)
+		line 204 - spin wait
+		line 244 - spin wait
+requestFrom
+	twi_readFrom
+		line 127 - spin wait
+		line 164 - spin wait

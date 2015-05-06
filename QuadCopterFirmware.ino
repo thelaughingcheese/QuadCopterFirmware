@@ -1,5 +1,4 @@
 #include <Servo.h>
-#include <Wire.h>
 #include "Globals.h"
 #include "ReceiverInput.h"
 #include "QuadCopter.h"

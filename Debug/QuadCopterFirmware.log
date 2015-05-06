@@ -1,0 +1,35 @@
+﻿Build started 5/5/2015 9:46:30 PM.
+     1>Project "G:\git\QuadCopterFirmware\QuadCopterFirmware.vcxproj" on node 2 (ClCompile target(s)).
+     1>ClCompile:
+         G:\Program Files E (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\cores\teensy3" /IG:\git\QuadCopterFirmware /I"G:\Program Files E\Arduino\arduino-1.0.6\libraries\Servo" /I"G:\Program Files E\Arduino\arduino-1.0.6\libraries\Servo\utility" /I"G:\Program Files E\Arduino\arduino-1.0.6\libraries" /I"G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\libraries" /I"G:\Program Files e (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers" /IC:\Users\Jason\Documents\Arduino\libraries /I"G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include" /I"G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include" /I"G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include" /I"G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include\\" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D __ARM_MK20dx256__ /D __ARM_MK20DX256__ /D ARDUINO=106 /D ARDUINO_MAIN /D __AVR__ /D __avr__ /D F_CPU=96000000 /D USB_SERIAL_HID /D LAYOUT_US_ENGLISH /D __cplusplus /D GCC_VERSION=40804 /D ARDUINO_ARCH_AVR /D ARDUINO_AVR_TEENSY31 /D __MK20DX256__ /D TEENSYDUINO=122 /D _MBCS /X /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /FI"G:\git\QuadCopterFirmware\Visual Micro\.QuadCopterFirmware.vsarduino.h" /analyze- /errorReport:prompt Wire.cpp
+         Wire.cpp
+     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(13): warning C4005: '__ARM_MK20dx256__' : macro redefinition
+                 command-line arguments :  see previous definition of '__ARM_MK20dx256__'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(14): warning C4005: '__ARM_MK20DX256__' : macro redefinition
+                 command-line arguments :  see previous definition of '__ARM_MK20DX256__'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(16): warning C4005: 'ARDUINO_MAIN' : macro redefinition
+                 command-line arguments :  see previous definition of 'ARDUINO_MAIN'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(17): warning C4005: '__AVR__' : macro redefinition
+                 command-line arguments :  see previous definition of '__AVR__'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(18): warning C4005: '__avr__' : macro redefinition
+                 command-line arguments :  see previous definition of '__avr__'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(20): warning C4005: 'USB_SERIAL_HID' : macro redefinition
+                 command-line arguments :  see previous definition of 'USB_SERIAL_HID'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(21): warning C4005: 'LAYOUT_US_ENGLISH' : macro redefinition
+                 command-line arguments :  see previous definition of 'LAYOUT_US_ENGLISH'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(22): warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(24): warning C4005: 'ARDUINO_ARCH_AVR' : macro redefinition
+                 command-line arguments :  see previous definition of 'ARDUINO_ARCH_AVR'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(25): warning C4005: 'ARDUINO_AVR_TEENSY31' : macro redefinition
+                 command-line arguments :  see previous definition of 'ARDUINO_AVR_TEENSY31'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(26): warning C4005: '__MK20DX256__' : macro redefinition
+                 command-line arguments :  see previous definition of '__MK20DX256__'
+     1>g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(34): warning C4005: '__asm__' : macro redefinition
+                 g:\git\quadcopterfirmware\visual micro\.quadcopterfirmware.vsarduino.h(29) : see previous definition of '__asm__'
+     1>g:\program files e\arduino\arduino-1.0.6\hardware\teensy\cores\teensy3\wprogram.h(4): fatal error C1083: Cannot open include file: 'stdlib.h': No such file or directory
+     1>Done Building Project "G:\git\QuadCopterFirmware\QuadCopterFirmware.vcxproj" (ClCompile target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.32

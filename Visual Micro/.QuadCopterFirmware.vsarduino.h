@@ -91,6 +91,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <QuadCopter.h>
 #include <ReceiverInput.cpp>
 #include <ReceiverInput.h>
+#include <Wire.cpp>
+#include <Wire.h>
 #include <tests.cpp>
 #include <tests.h>
 #endif

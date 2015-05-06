@@ -2,7 +2,7 @@
 #define I2CDEVICE
 
 #include "Arduino.h"
-#include <Wire.h>
+#include "Wire.h"
 #include "Globals.h"
 
 class I2cDevice{
