@@ -92,8 +92,11 @@ float AttitudeMeasurement::getAxisAngleAbsolute(Axis axis){
 //does not encorporate magnetometer, uses complementary filter
 void AttitudeMeasurement::update(){
 	gyroscope.update();
-	accelerometer.update();
-	magnetometer.update();
+
+	//accelerometer.update();
+
+	//magnetometer.update();
+
 
 	//calc absolute stuffs
 	uint32_t deltaMicroSeconds = micros() - lastUpdate;

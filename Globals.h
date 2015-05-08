@@ -9,7 +9,7 @@
 #else
 	#define DEBUGSPRINTLN(msg) ;
 	#define DEBUGSPRINT(msg) ;
-	#define DEBUGSBEGIN ;
+	#define DEBUGSBEGIN;
 #endif
 
 #define INT_LONG_MAX ((long)0x7fffffff)
@@ -17,3 +17,5 @@
 
 #define INT_SHORT_MAX ((short)0x7fff)
 #define INT_SHORT_MIN ((short)0x8000)
+
+#define Wire WireModified

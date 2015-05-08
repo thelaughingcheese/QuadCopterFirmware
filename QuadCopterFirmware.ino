@@ -1,5 +1,6 @@
 #include <Servo.h>
 #include "Globals.h"
+//#include <Wire.h>
 #include "ReceiverInput.h"
 #include "QuadCopter.h"
 #include "AttitudeMeasurement.h"
@@ -10,6 +11,7 @@
 void setup()
 {
 	pinMode(13,OUTPUT);
+	pinMode(1,OUTPUT);
 
 	DEBUGSBEGIN;
 	//delay(200);	//allow i2c devices to initialize

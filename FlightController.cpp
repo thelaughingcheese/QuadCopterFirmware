@@ -81,7 +81,7 @@ void FlightController::begin(){
 				DEBUGSPRINT(attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW)); DEBUGSPRINT("\n");
 				*/
 
-			analogWriteDAC0((attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH)+90)*4069/180);
+			//analogWriteDAC0((attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH)+90)*4069/180);
 		}
 		else if(flightMode == RATE_CONTROLLED){
 			pitchControl.setGains(100,0,0);

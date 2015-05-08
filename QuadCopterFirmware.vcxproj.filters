@@ -97,11 +97,8 @@
     <ClInclude Include="LowPassSensorFilter.h">
       <Filter>Source Files\Flight Control</Filter>
     </ClInclude>
-    <ClInclude Include="Wire.h">
+    <ClInclude Include="WireModified.h">
       <Filter>Source Files\Modified Wire lib</Filter>
-    </ClInclude>
-    <ClInclude Include="utility\twi.h">
-      <Filter>Source Files\Modified Wire lib\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,11 +139,8 @@
     <ClCompile Include="FlightController.cpp">
       <Filter>Source Files\Flight Control</Filter>
     </ClCompile>
-    <ClCompile Include="Wire.cpp">
+    <ClCompile Include="WireModified.cpp">
       <Filter>Source Files\Modified Wire lib</Filter>
-    </ClCompile>
-    <ClCompile Include="utility\twi.c">
-      <Filter>Source Files\Modified Wire lib\utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

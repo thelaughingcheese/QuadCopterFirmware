@@ -122,7 +122,7 @@ uint8_t twi_readFrom(uint8_t address, uint8_t* data, uint8_t length, uint8_t sen
   if(TWI_BUFFER_LENGTH < length){
     return 0;
   }
-
+  
   // wait until twi is ready, become master receiver
   while(TWI_READY != twi_state){
     continue;

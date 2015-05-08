@@ -50,17 +50,24 @@ void Gyroscope::setMaxAngularVelocity(Gyroscope::MaxAngularVelocity max){
 
 //!!we need to handle errors here!
 void Gyroscope::update(){
+analogWriteDAC0(0);
 	Wire.beginTransmission(deviceAddress);
-	Wire.write(GYRO_REGISTER_OUT_X_L | 0x80);
-	Wire.endTransmission();
+analogWriteDAC0(607);
+	Wire.write(GYRO_REGISTER_OUT_X_L | 0x80);	
+analogWriteDAC0(1214);
+	Wire.endTransmission();	//200us
+analogWriteDAC0(1821);
 
-	Wire.requestFrom(deviceAddress,6);
-	while(Wire.available() < 6);
+	Wire.requestFrom(deviceAddress,6);	//700us
+analogWriteDAC0(2430);
+	while(Wire.available() < 6){ analogWriteDAC0(0); };
+analogWriteDAC0(3036);
 	x = (Wire.read() | Wire.read() << 8) - xOffset;
-	y = (Wire.read() | Wire.read() << 8) - yOffset;
+	y = (Wire.read() | Wire.read() << 8) - yOffset;		//all this 2us
 	z = (Wire.read() | Wire.read() << 8) - zOffset;
-
-	Wire.endTransmission();
+analogWriteDAC0(3643);
+Wire.endTransmission();		//200us
+analogWriteDAC0(4000);
 }
 
 void Gyroscope::calibrateOffset(){
