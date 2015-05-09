@@ -1,8 +1,8 @@
-#define DEBUG 1
+//#define DEBUG 1
 
 #ifdef DEBUG
 	#define DEBUGSBEGIN Serial.begin(9600); 
-		//while(!Serial); 
+		while(!Serial); 
 	#define DEBUGSPRINTLN(msg) Serial.println(msg);
 	#define DEBUGSPRINT(msg) Serial.print(msg);
 #else

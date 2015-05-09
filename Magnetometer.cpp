@@ -1,3 +1,6 @@
+#define RESET_BUS_AND_BREAK Wire.begin(); \
+	continue;
+
 #include "Magnetometer.h"
 
 Magnetometer::Magnetometer(): I2cDevice(LSM303_ADDRESS_MAG){
@@ -24,17 +27,26 @@ Magnetometer::Magnetometer(): I2cDevice(LSM303_ADDRESS_MAG){
 
 //handle errors here!!
 void Magnetometer::update(){
-	Wire.beginTransmission(deviceAddress);
-	Wire.write(LSM303_REGISTER_MAG_OUT_X_H_M | 0x80);
-	Wire.endTransmission();
+	for(;;){
+		Wire.beginTransmission(deviceAddress);
+		Wire.write(LSM303_REGISTER_MAG_OUT_X_H_M | 0x80);
+		if(Wire.endTransmission()){
+			RESET_BUS_AND_BREAK
+		}
 
-	Wire.requestFrom(deviceAddress,6);
-	while(Wire.available() < 6);
-	x = (Wire.read() << 8 | Wire.read()) - xOffset;
-	y = (Wire.read() << 8 | Wire.read()) - yOffset;
-	z = (Wire.read() << 8 | Wire.read()) - zOffset;
+		if(!Wire.requestFrom(deviceAddress,6)){
+			RESET_BUS_AND_BREAK
+		}
+		while(Wire.available() < 6);
+		x = (Wire.read() << 8 | Wire.read()) - xOffset;
+		y = (Wire.read() << 8 | Wire.read()) - yOffset;
+		z = (Wire.read() << 8 | Wire.read()) - zOffset;
 
-	Wire.endTransmission();
+		if(Wire.endTransmission()){
+			RESET_BUS_AND_BREAK
+		}
+		break;
+	}
 }
 
 void Magnetometer::calibrateOffset(){

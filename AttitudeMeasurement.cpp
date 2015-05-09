@@ -92,8 +92,8 @@ float AttitudeMeasurement::getAxisAngleAbsolute(Axis axis){
 //does not encorporate magnetometer, uses complementary filter
 void AttitudeMeasurement::update(){
 	gyroscope.update();
-	//accelerometer.update();
-	//magnetometer.update();
+	accelerometer.update();
+	magnetometer.update();
 
 
 	//calc absolute stuffs
@@ -108,10 +108,6 @@ void AttitudeMeasurement::update(){
 	pitch = 0.98*predictedPitch + 0.02*getAccelerometerAxisAngle(PITCH);
 	roll = 0.98*predictedRoll + 0.02*getAccelerometerAxisAngle(ROLL);
 	yaw = 0.98*predictedYaw + 0.02*getAccelerometerAxisAngle(YAW);
-
-	DEBUGSPRINT(pitch); DEBUGSPRINT(", ");
-	DEBUGSPRINT(yaw); DEBUGSPRINT(", ");
-	DEBUGSPRINT(roll); DEBUGSPRINT("\n");
 
 	//debug!! vibration analysis
 	//analogWriteDAC0((getAxisAngleRate(PITCH)+INT_SHORT_MAX)*4069/(INT_SHORT_MAX*2));

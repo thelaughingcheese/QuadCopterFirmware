@@ -1,3 +1,6 @@
+#define RESET_BUS_AND_BREAK Wire.begin(); \
+	continue;
+
 #include "Accelerometer.h"
 
 Accelerometer::Accelerometer(): I2cDevice(LSM303_ADDRESS_ACC){
@@ -16,17 +19,26 @@ Accelerometer::Accelerometer(): I2cDevice(LSM303_ADDRESS_ACC){
 
 //handle errors here!!
 void Accelerometer::update(){
-	Wire.beginTransmission(deviceAddress);
-	Wire.write(LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80);
-	Wire.endTransmission();
+	for(;;){
+		Wire.beginTransmission(deviceAddress);
+		Wire.write(LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80);
+		if(Wire.endTransmission()){
+			RESET_BUS_AND_BREAK
+		}
 
-	Wire.requestFrom(deviceAddress,6);
-	while(Wire.available() < 6);
-	x = (Wire.read() | Wire.read() << 8) - xOffset;
-	y = (Wire.read() | Wire.read() << 8) - yOffset;
-	z = (Wire.read() | Wire.read() << 8) - zOffset;
+		if(!Wire.requestFrom(deviceAddress,6)){
+			RESET_BUS_AND_BREAK
+		}
+		while(Wire.available() < 6);
+		x = (Wire.read() | Wire.read() << 8) - xOffset;
+		y = (Wire.read() | Wire.read() << 8) - yOffset;
+		z = (Wire.read() | Wire.read() << 8) - zOffset;
 
-	Wire.endTransmission();
+		if(Wire.endTransmission()){
+			RESET_BUS_AND_BREAK
+		}
+		break;
+	}
 }
 
 void Accelerometer::calibrateOffset(){
