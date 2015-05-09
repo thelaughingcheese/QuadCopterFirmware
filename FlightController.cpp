@@ -16,7 +16,7 @@ void FlightController::setMode(FlightMode mode){
 }
 
 void FlightController::begin(){
-	//hold until throttle is 0
+	#pragma region safety block until throttle cut and set to 0
 	while(THROTTLE_CUT_CHANNEL > 0 || (THROTTLE_CHANNEL*INT_SHORT_MAX)/(CHMAXVAL*2) > 0){
 		digitalWriteFast(13,HIGH);
 		delay(500);
@@ -25,8 +25,11 @@ void FlightController::begin(){
 
 		DEBUGSPRINTLN("Throttledown to start!");
 	}
+	digitalWriteFast(13,LOW);
+	#pragma endregion
 
 	for(;;){
+		#pragma region safety throttle cut
 		if(THROTTLE_CUT_CHANNEL < 0){
 			quadCopter->throttle = 0;
 			quadCopter->pitch = 0;
@@ -38,11 +41,13 @@ void FlightController::begin(){
 
 			continue;
 		}
+		#pragma endregion
 
+		#pragma region attitude control mode
 		if(flightMode == ATTITUDE_CONTROLLED){
-			pitchControl.setGains(300,0,0);
-			rollControl.setGains(300,0,0);
-			yawControl.setGains(100,0,0);
+			pitchControl.setGains(0,0,0);
+			rollControl.setGains(150,0,0);
+			yawControl.setGains(0,0,0);
 
 			//read receiver, convert to angle
 			long pitchAngle = (PITCH_CHANNEL*MAXANGLE)/CHMAXVAL;
@@ -83,6 +88,9 @@ void FlightController::begin(){
 
 			//analogWriteDAC0((attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH)+90)*4069/180);
 		}
+		#pragma endregion
+
+		#pragma region rate control mode
 		else if(flightMode == RATE_CONTROLLED){
 			pitchControl.setGains(100,0,0);
 			rollControl.setGains(100,0,0);
@@ -119,6 +127,9 @@ void FlightController::begin(){
 			DEBUGSPRINT(quadCopter->yaw); DEBUGSPRINT("\n");
 			
 		}
+		#pragma endregion
+
+		#pragma region raw control mode
 		else if(flightMode == RAW_CONTROLLED){
 			//read receiver
 			long pitchOut = (PITCH_CHANNEL*INT_SHORT_MAX)/CHMAXVAL;
@@ -133,17 +144,22 @@ void FlightController::begin(){
 			quadCopter->yaw = min(max(yawOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->update();
 		}
+		#pragma endregion
+
+		#pragma region invalid control mode
 		else{
 			DEBUGSPRINTLN("invalid Flight Mode");
 			break;
 		}
+		#pragma endregion
 
 		//delay(1);	//remove this and see what happens
 
-		//benchmarking
+		#pragma region benchmarking
 		pinMode(0,OUTPUT);
 		digitalWriteFast(0,HIGH);
 		delayMicroseconds(50);
 		digitalWriteFast(0,LOW);
+		#pragma endregion
 	}
 }
