@@ -29,7 +29,11 @@ void setup()
 void loop()
 {
 	QuadCopter quadCopter(3,4,5,6,2000,700);
-	quadCopter.startUpNormal();
+	//quadCopter.startUpNormal();
+
+	EscConfiguration config;
+
+	quadCopter.startSetConfigAndStart(config);
 	AttitudeMeasurement attitudeMeasurement(AttitudeMeasurement::PITCH,AttitudeMeasurement::ROLL,AttitudeMeasurement::YAW);
 	DEBUGSPRINTLN("GO!");
 	digitalWriteFast(13,HIGH);

@@ -1,5 +1,5 @@
-#define CONFIG_ITEM_DELAY delay(2);
-#define CONFIG_OPTION_DELAY delay(2);
+#define CONFIG_ITEM_DELAY delay(5000);
+#define CONFIG_OPTION_DELAY delay(3000);
 
 #include "Globals.h"
 #include "EscStartupManager.h"
@@ -31,126 +31,152 @@ void EscStartupManager::applyConfigurationAll(){
 	throttleAllMax();
 	delay(7000);
 
+	DEBUGSPRINTLN("esc programming start!");
+
 	//set brake
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("select brake");
 	throttleAllMin();
 	do{
+		CONFIG_OPTION_DELAY
 		if(config.brake == config.BRAKE_OFF){
+			DEBUGSPRINTLN("break off");
 			throttleAllMax();
 			break;
 		}
+		CONFIG_OPTION_DELAY
 		if(config.brake == config.BRAKE_ON){
+			DEBUGSPRINTLN("break on");
   			throttleAllMax();
 			break;
 		}
 		DEBUGSPRINTLN("esc config didn't make selection!");
 	}while(0);
-	CONFIG_ITEM_DELAY
 
 	//set battery type
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("select battery type");
 	throttleAllMin();
 	do{
 		CONFIG_OPTION_DELAY
 		if(config.batteryType == config.LIPO){
+			DEBUGSPRINTLN("lipo");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
 		if(config.batteryType == config.NICD){
-  			throttleAllMax();
+			DEBUGSPRINTLN("nicd");
 			break;
 		}
 		DEBUGSPRINTLN("esc config didn't make selection!");
 	}while(0);
-	CONFIG_ITEM_DELAY
 
 	//set cutoff mode
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("select cutoff mode");
 	throttleAllMin();
 	do{
   		CONFIG_OPTION_DELAY
 		if(config.cutoffMode == config.SOFT_CUTOFF){
+			DEBUGSPRINTLN("soft cutoff");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
 		if(config.cutoffMode == config.HARD_CUTOFF){
+			DEBUGSPRINTLN("hard cutoff");
   			throttleAllMax();
 			break;
 		}
 		DEBUGSPRINTLN("esc config didn't make selection!");
 	}while(0);
-	CONFIG_ITEM_DELAY
 
 	//set cutoff threshold
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("select cutoff threshold");
 	throttleAllMin();
 	do{
   		CONFIG_OPTION_DELAY
   		if(config.cutoffThreshold == config.LOW_THRESHOLD){
+			DEBUGSPRINTLN("low thresh");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
   		if(config.cutoffThreshold == config.MEDIUM_THRESHOLD){
+			DEBUGSPRINTLN("med thresh");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
   		if(config.cutoffThreshold == config.HIGH_THRESHOLD){
+			DEBUGSPRINTLN("high thresh");
   			throttleAllMax();
 			break;
 		}
   		DEBUGSPRINTLN("esc config didn't make selection!");
 	}while(0);
-	CONFIG_ITEM_DELAY
 
 	//set startup mode
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("select startup mode");
 	throttleAllMin();
 	do{
   		CONFIG_OPTION_DELAY
-    		if(config.startMode == config.NORMAL_START){
+    	if(config.startMode == config.NORMAL_START){
+			DEBUGSPRINTLN("normal start");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
-    		if(config.startMode == config.SOFT_START){
+    	if(config.startMode == config.SOFT_START){
+				DEBUGSPRINTLN("soft start");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
-    		if(config.startMode == config.SUPERSOFT_START){
+    	if(config.startMode == config.SUPERSOFT_START){
+			DEBUGSPRINTLN("supersoft start");
   			throttleAllMax();
 			break;
 		}
   		DEBUGSPRINTLN("esc config didn't make selection!");
 	}while(0);
-	CONFIG_ITEM_DELAY
 
 	//set timing
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("select timing");
 	throttleAllMin();
 	do{
   		CONFIG_OPTION_DELAY
-    		if(config.timing == config.LOW_TIMING){
+    	if(config.timing == config.LOW_TIMING){
+			DEBUGSPRINTLN("low timing");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
-    		if(config.timing == config.MEDIUM_TIMING){
+    	if(config.timing == config.MEDIUM_TIMING){
+			DEBUGSPRINTLN("med timing");
   			throttleAllMax();
 			break;
 		}
 		CONFIG_OPTION_DELAY
-    		if(config.timing == config.HIGH_TIMING){
+    	if(config.timing == config.HIGH_TIMING){
+			DEBUGSPRINTLN("high timing");
   			throttleAllMax();
 			break;
 		}
   		DEBUGSPRINTLN("esc config didn't make selection!");
 	}while(0);
-	CONFIG_ITEM_DELAY
 
 	//skip default
-	delay(0);
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("skip factory reset");
 
-        //exit
-        delay(0);
+	//exit
+	CONFIG_ITEM_DELAY
+	DEBUGSPRINTLN("done esc config");
 	throttleAllMin();
 }
 
