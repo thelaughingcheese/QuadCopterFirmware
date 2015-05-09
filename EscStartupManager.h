@@ -8,10 +8,15 @@ class EscStartupManager{
 private:
 	Esc* esc;
 	long size;
+	EscConfiguration config;
+
+	void throttleAllMin();
+	void throttleAllMax();
 public:
 	EscStartupManager(Esc* escs, long n);
 	void startupAllNormal();
-	void setConfigurationAll(EscConfiguration config);
+	void applyRange();
+	void setConfigurationAll(EscConfiguration cfg);
 	void applyConfigurationAll();
 };
 
