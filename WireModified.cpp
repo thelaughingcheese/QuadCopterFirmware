@@ -19,6 +19,10 @@
   Modified 2012 by Todd Krein (todd@krein.org) to implement repeated starts
 */
 
+//added
+#define I2C_WAIT_TIMEOUT 500
+//----
+
 #if defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
 
 #include "kinetis.h"
@@ -26,6 +30,7 @@
 #include "core_pins.h"
 //#include "HardwareSerial.h"
 #include "WireModified.h"
+#include "Globals.h"
 
 uint8_t TwoWireModified::rxBuffer[BUFFER_LENGTH];
 uint8_t TwoWireModified::rxBufferIndex = 0;
@@ -254,13 +259,10 @@ void i2c0_isr(void)
 		#elif defined(KINETISL)
 		I2C0_FLT |= I2C_FLT_STOPIE;
 		#endif
-		//digitalWriteFast(4, HIGH);
 		data = I2C0_D;
-		//serial_phex(data);
 		if (TwoWireModified::rxBufferLength < BUFFER_LENGTH && receiving) {
 			TwoWireModified::rxBuffer[TwoWireModified::rxBufferLength++] = data;
 		}
-		//digitalWriteFast(4, LOW);
 	}
 	I2C0_S = I2C_S_IICIF;
 }
@@ -270,7 +272,6 @@ void i2c0_isr(void)
 // This pin change interrupt hack is needed to detect the stop condition
 void TwoWireModified::sda_rising_isr(void)
 {
-	//digitalWrite(3, HIGH);
 	if (!(I2C0_S & I2C_S_BUSY)) {
 		detachInterrupt(18);
 		if (user_onReceive != NULL) {
@@ -283,7 +284,6 @@ void TwoWireModified::sda_rising_isr(void)
 			detachInterrupt(18);
 		}
 	}
-	//digitalWrite(3, LOW);
 }
 
 
@@ -297,13 +297,19 @@ void TwoWireModified::sda_rising_isr(void)
 //  I2C0_FLT     // I2C Programmable Input Glitch Filter register
 
 
-static void i2c_wait(void)
+static uint8_t i2c_wait(void)
 {
 	//spin
 	digitalWriteFast(1,HIGH);
-	while (!(I2C0_S & I2C_S_IICIF)) ; // wait
+	unsigned long waitStart = micros();
+	while(!(I2C0_S & I2C_S_IICIF)){  // wait
+		if(micros() - waitStart > I2C_WAIT_TIMEOUT){
+			return 1;
+		}
+	}
 	digitalWriteFast(1,LOW);
 	I2C0_S = I2C_S_IICIF;
+	return 0;
 }
 
 void TwoWireModified::beginTransmission(uint8_t address)
@@ -358,7 +364,12 @@ uint8_t TwoWireModified::endTransmission(uint8_t sendStop)
 		I2C0_C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_RSTA | I2C_C1_TX;
 	} else {
 		// we are not currently the bus master, so wait for bus ready
-		while (I2C0_S & I2C_S_BUSY) ;	//spin
+		unsigned long waitStart = micros();
+		while(I2C0_S & I2C_S_BUSY) {	//spin
+			if(micros() - waitStart > I2C_WAIT_TIMEOUT){
+				return 5;
+			}
+		}
 		// become the bus master in transmit mode (send start)
 		slave_mode = 0;
 		I2C0_C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_TX;
@@ -366,7 +377,9 @@ uint8_t TwoWireModified::endTransmission(uint8_t sendStop)
 	// transmit the address and data
 	for (i=0; i < txBufferLength; i++) {
 		I2C0_D = txBuffer[i];
-		i2c_wait();
+		if(i2c_wait()){
+			return 6;
+		}
 		status = I2C0_S;
 		if (status & I2C_S_RXAK) {
 			// the slave device did not acknowledge
@@ -401,8 +414,6 @@ uint8_t TwoWireModified::requestFrom(uint8_t address, uint8_t length, uint8_t se
 
 	rxBufferIndex = 0;
 	rxBufferLength = 0;
-	//serial_print("requestFrom\n");
-	//digitalWriteFast(13,HIGH);
 	// clear the status flags
 	I2C0_S = I2C_S_IICIF | I2C_S_ARBL;
 	// now take control of the bus...
@@ -411,14 +422,21 @@ uint8_t TwoWireModified::requestFrom(uint8_t address, uint8_t length, uint8_t se
 		I2C0_C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_RSTA | I2C_C1_TX;
 	} else {
 		// we are not currently the bus master, so wait for bus ready
-		while (I2C0_S & I2C_S_BUSY) ;	//spin
+		unsigned long waitStart = micros();
+		while(I2C0_S & I2C_S_BUSY) {	//spin
+			if(micros() - waitStart > I2C_WAIT_TIMEOUT){
+				return 0;
+			}
+		}
 		// become the bus master in transmit mode (send start)
 		slave_mode = 0;
 		I2C0_C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_TX;
 	}
 	// send the address
 	I2C0_D = (address << 1) | 1;
-	i2c_wait();
+	if(i2c_wait()){
+		return 0;
+	}
 	status = I2C0_S;
 	if ((status & I2C_S_RXAK) || (status & I2C_S_ARBL)) {
 		// the slave device did not acknowledge
@@ -438,12 +456,16 @@ uint8_t TwoWireModified::requestFrom(uint8_t address, uint8_t length, uint8_t se
 	}
 	tmp = I2C0_D; // initiate the first receive
 	while (length > 1) {
-		i2c_wait();
+		if(i2c_wait()){
+			return 0;
+		}
 		length--;
 		if (length == 1) I2C0_C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_TXAK;
 		rxBuffer[count++] = I2C0_D;
 	}
-	i2c_wait();
+	if(i2c_wait()){
+		return 0;
+	}
 	I2C0_C1 = I2C_C1_IICEN | I2C_C1_MST | I2C_C1_TX;
 	rxBuffer[count++] = I2C0_D;
 	if (sendStop) I2C0_C1 = I2C_C1_IICEN;
