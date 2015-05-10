@@ -6,6 +6,7 @@
 #include "Accelerometer.h"
 #include "Gyroscope.h"
 #include "Magnetometer.h"
+#include "LowPassSensorFilter.h"
 
 class AttitudeMeasurement{
 public:
@@ -18,6 +19,22 @@ private:
 	Accelerometer accelerometer;
 	Gyroscope gyroscope;
 	Magnetometer magnetometer;
+
+	LowPassSensorFilter<short> gyroXFilter;
+	LowPassSensorFilter<short> gyroYFilter;
+	LowPassSensorFilter<short> gyroZFilter;
+
+	LowPassSensorFilter<short> accelXFilter;
+	LowPassSensorFilter<short> accelYFilter;
+	LowPassSensorFilter<short> accelZFilter;
+
+	short gyroX;
+	short gyroY;
+	short gyroZ;
+
+	short accelX;
+	short accelY;
+	short accelZ;
 
 	float pitch,roll,yaw;
 	Axis xMapping;

@@ -2,7 +2,8 @@
 
 #define MICRO_TO_SEC_RATIO 0.000001
 
-PidController::PidController(float p,float i,float d){
+PidController::PidController(float p,float i,float d):
+dFilter(15){
 	setGains(p,i,d);
 	resetIComponent();
 
@@ -27,7 +28,7 @@ float PidController::update(float input){
 
 	float pComponent = error * pGain;
 	float iComponent = errorIntegral;
-	float dComponent = (error - lastError)*invDeltaTime*dGain;
+	float dComponent = dFilter.update(error - lastError)*invDeltaTime*dGain;
 
 	lastError = error;
 

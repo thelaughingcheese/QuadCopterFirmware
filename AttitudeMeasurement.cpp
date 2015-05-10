@@ -3,7 +3,13 @@
 #define RAD_TO_DEG_RATIO 57.295779513082320876798154814105
 #define MICRO_TO_SEC_RATIO 0.000001
 
-AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z){
+AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z):
+gyroXFilter(10),
+gyroYFilter(10),
+gyroZFilter(10),
+accelXFilter(80),
+accelYFilter(80),
+accelZFilter(80){
 	xMapping = X;
 	yMapping = Y;
 	zMapping = Z;
@@ -18,27 +24,27 @@ AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z){
 }
 
 float AttitudeMeasurement::getAxisAngleRate(Axis axis){
-	if(xMapping == axis) return gyroscope.convertAngularVelocity(gyroscope.x);
-	else if(yMapping == axis) return gyroscope.convertAngularVelocity(gyroscope.y);
-	else if(zMapping == axis) return gyroscope.convertAngularVelocity(gyroscope.z);
+	if(xMapping == axis) return gyroscope.convertAngularVelocity(gyroX);
+	else if(yMapping == axis) return gyroscope.convertAngularVelocity(gyroY);
+	else if(zMapping == axis) return gyroscope.convertAngularVelocity(gyroZ);
 }
 
 float AttitudeMeasurement::getAccelerometerAxisAngle(Axis axis){
 	if(xMapping == axis){
 		float rtn;
 
-		if(accelerometer.z == 0){
-			rtn = RAD_TO_DEG_RATIO*atan((float)accelerometer.y);
+		if(accelZ == 0){
+			rtn = RAD_TO_DEG_RATIO*atan((float)accelY);
 		}
 		else{
-			if(accelerometer.z < 0 && accelerometer.y > 0){
-				rtn = 180 + RAD_TO_DEG_RATIO*atan((float)accelerometer.y/accelerometer.z);
+			if(accelZ < 0 && accelY > 0){
+				rtn = 180 + RAD_TO_DEG_RATIO*atan((float)accelY/accelZ);
 			}
-			else if(accelerometer.z < 0 && accelerometer.y < 0){
-				rtn = -180 + RAD_TO_DEG_RATIO*atan((float)accelerometer.y/accelerometer.z);
+			else if(accelZ < 0 && accelY < 0){
+				rtn = -180 + RAD_TO_DEG_RATIO*atan((float)accelY/accelZ);
 			}
 			else{
-				rtn = RAD_TO_DEG_RATIO*atan((float)accelerometer.y/accelerometer.z);
+				rtn = RAD_TO_DEG_RATIO*atan((float)accelY/accelZ);
 			}
 		}
 		return rtn;
@@ -46,18 +52,18 @@ float AttitudeMeasurement::getAccelerometerAxisAngle(Axis axis){
 	else if(yMapping == axis){
 		float rtn;
 
-		if(accelerometer.z == 0){
-			rtn = RAD_TO_DEG_RATIO*atan((float)accelerometer.x);
+		if(accelZ == 0){
+			rtn = RAD_TO_DEG_RATIO*atan((float)accelX);
 		}
 		else{
-			if(accelerometer.z < 0 && accelerometer.x > 0){
-				rtn = 180 + RAD_TO_DEG_RATIO*atan((float)accelerometer.x/accelerometer.z);
+			if(accelZ < 0 && accelX > 0){
+				rtn = 180 + RAD_TO_DEG_RATIO*atan((float)accelX/accelZ);
 			}
-			else if(accelerometer.z < 0 && accelerometer.x < 0){
-				rtn = -180 + RAD_TO_DEG_RATIO*atan((float)accelerometer.x/accelerometer.z);
+			else if(accelZ < 0 && accelX < 0){
+				rtn = -180 + RAD_TO_DEG_RATIO*atan((float)accelX/accelZ);
 			}
 			else{
-				rtn = RAD_TO_DEG_RATIO*atan((float)accelerometer.x/accelerometer.z);
+				rtn = RAD_TO_DEG_RATIO*atan((float)accelX/accelZ);
 			}
 		}
 		return -rtn;
@@ -65,18 +71,18 @@ float AttitudeMeasurement::getAccelerometerAxisAngle(Axis axis){
 	else if(zMapping == axis){
 		float rtn;
 
-		if(accelerometer.y == 0){
-			rtn = RAD_TO_DEG_RATIO*atan((float)accelerometer.x);
+		if(accelY == 0){
+			rtn = RAD_TO_DEG_RATIO*atan((float)accelX);
 		}
 		else{
-			if(accelerometer.y < 0 && accelerometer.x > 0){
-				rtn = 180 + RAD_TO_DEG_RATIO*atan((float)accelerometer.x/accelerometer.y);
+			if(accelY < 0 && accelX > 0){
+				rtn = 180 + RAD_TO_DEG_RATIO*atan((float)accelX/accelY);
 			}
-			else if(accelerometer.y < 0 && accelerometer.x < 0){
-				rtn = -180 + RAD_TO_DEG_RATIO*atan((float)accelerometer.x/accelerometer.y);
+			else if(accelY < 0 && accelX < 0){
+				rtn = -180 + RAD_TO_DEG_RATIO*atan((float)accelX/accelY);
 			}
 			else{
-				rtn = RAD_TO_DEG_RATIO*atan((float)accelerometer.x/accelerometer.y);
+				rtn = RAD_TO_DEG_RATIO*atan((float)accelX/accelY);
 			}
 		}
 		return rtn;
@@ -95,6 +101,14 @@ void AttitudeMeasurement::update(){
 	accelerometer.update();
 	magnetometer.update();
 
+	//filter
+	gyroX = gyroXFilter.update(gyroscope.x);
+	gyroY = gyroYFilter.update(gyroscope.y);
+	gyroZ = gyroZFilter.update(gyroscope.z);
+
+	accelX = accelXFilter.update(accelerometer.x);
+	accelY = accelYFilter.update(accelerometer.y);
+	accelZ = accelZFilter.update(accelerometer.z);
 
 	//calc absolute stuffs
 	uint32_t deltaMicroSeconds = micros() - lastUpdate;

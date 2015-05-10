@@ -2,12 +2,15 @@
 #define PIDCONTROLLER
 
 #include "Arduino.h"
+#include "LowPassSensorFilter.h"
 
 class PidController{
 private:
 	uint32_t lastUpdate;
 	float errorIntegral;
 	float lastError;
+
+	LowPassSensorFilter<float> dFilter;
 public:
 	float pGain,iGain,dGain;
 	float target;
