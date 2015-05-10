@@ -9,6 +9,7 @@ private:
 	uint32_t lastUpdate;
 	float errorIntegral;
 	float lastError;
+	float iCap;
 
 	LowPassSensorFilter<float> dFilter;
 public:
@@ -17,6 +18,7 @@ public:
 
 	PidController(float p, float i, float d);
 	void setGains(float p,float i,float d);
+	void setICap(float cap);
 	float update(float input);
 	void resetIComponent();
 };

@@ -9,6 +9,10 @@ yawControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
 	setMode(ATTITUDE_CONTROLLED);
+
+	pitchControl.setICap(8000);
+	rollControl.setICap(8000);
+	yawControl.setICap(8000);
 }
 
 void FlightController::setMode(FlightMode mode){
