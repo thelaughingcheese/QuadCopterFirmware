@@ -110,6 +110,7 @@
     <ClCompile Include="FlightController.cpp" />
     <ClCompile Include="Gyroscope.cpp" />
     <ClCompile Include="I2cDevice.cpp" />
+    <ClCompile Include="LowPassSensorFilter.cpp" />
     <ClCompile Include="Magnetometer.cpp" />
     <ClCompile Include="PidController.cpp" />
     <ClCompile Include="QuadCopter.cpp" />

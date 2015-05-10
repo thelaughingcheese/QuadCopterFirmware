@@ -82,6 +82,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Gyroscope.h>
 #include <I2cDevice.cpp>
 #include <I2cDevice.h>
+#include <LowPassSensorFilter.cpp>
 #include <LowPassSensorFilter.h>
 #include <Magnetometer.cpp>
 #include <Magnetometer.h>

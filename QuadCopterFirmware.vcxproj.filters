@@ -142,6 +142,9 @@
     <ClCompile Include="WireModified.cpp">
       <Filter>Source Files\Modified Wire lib</Filter>
     </ClCompile>
+    <ClCompile Include="LowPassSensorFilter.cpp">
+      <Filter>Source Files\Flight Control</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="wire calls.txt" />
