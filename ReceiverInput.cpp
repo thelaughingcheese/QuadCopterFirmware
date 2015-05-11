@@ -25,6 +25,8 @@ volatile long ch9 = 0;
 
 volatile long channelCenterValue;
 
+volatile Quadcopter* quadCopterSafetyPtr = 0;
+
 void setupReceiverInput(){
 	pinMode(CH1PIN,INPUT);
 	pinMode(CH2PIN,INPUT);
@@ -75,6 +77,15 @@ void ch4Change(){
 void ch5Change(){
 	if(digitalReadFast(CH5PIN)){ ch5Start=micros(); }
 	else{ ch5=micros()-ch5Start; }
+
+	if(ch5 < channelCenterValue && quadCopterSafetyPtr){
+		//cut throttle!!
+		quadCopterSafetyPtr->throttle = 0;
+		quadCopterSafetyPtr->pitch = 0;
+		quadCopterSafetyPtr->roll = 0;
+		quadCopterSafetyPtr->yaw = 0;
+		quadCopterSafetyPtr->update();
+	}
 }
 void ch6Change(){
 	if(digitalReadFast(CH6PIN)){ ch6Start=micros(); }
