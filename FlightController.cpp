@@ -49,8 +49,8 @@ void FlightController::begin(){
 
 		#pragma region attitude control mode
 		if(flightMode == ATTITUDE_CONTROLLED){
-			pitchControl.setGains(0,0,0);
-			rollControl.setGains(150,0,0);
+			pitchControl.setGains(20,0,0);
+			rollControl.setGains(20,0,0);
 			yawControl.setGains(0,0,0);
 
 			//read receiver, convert to angle
@@ -76,21 +76,6 @@ void FlightController::begin(){
 			quadCopter->roll = min(max(rollOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->yaw = min(max(yawOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->update();
-
-			/*
-				DEBUGSPRINT(quadCopter->throttle); DEBUGSPRINT(", ");
-				DEBUGSPRINT(quadCopter->pitch); DEBUGSPRINT(", ");
-				DEBUGSPRINT(quadCopter->roll); DEBUGSPRINT(", ");
-				DEBUGSPRINT(quadCopter->yaw); DEBUGSPRINT("\n");
-			*/	
-
-				/*
-				DEBUGSPRINT(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH)); DEBUGSPRINT(", ");
-				DEBUGSPRINT(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::ROLL)); DEBUGSPRINT(", ");
-				DEBUGSPRINT(attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW)); DEBUGSPRINT("\n");
-				*/
-
-			//analogWriteDAC0((attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH)+90)*4069/180);
 		}
 		#pragma endregion
 

@@ -21,6 +21,32 @@
 
 //added
 #define I2C_WAIT_TIMEOUT 500
+#define DATA_PIN 18
+#define CLOCK_CYCLE_PIN 17	//electrically connected to SCL
+#define CLOCK_CYCLE_DELAY delayMicroseconds(5);
+#define CYCLE_CLOCK_LINE	if(digitalReadFast(DATA_PIN) == LOW){ \
+	pinMode(CLOCK_CYCLE_PIN,OUTPUT); \
+	digitalWriteFast(CLOCK_CYCLE_PIN,HIGH); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,LOW); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,HIGH); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,LOW); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,HIGH); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,LOW); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,HIGH); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,LOW); \
+	CLOCK_CYCLE_DELAY; \
+	digitalWriteFast(CLOCK_CYCLE_PIN,HIGH); \
+	pinMode(CLOCK_CYCLE_PIN,INPUT); \
+}
+
+
 //----
 
 #if defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__)
@@ -367,6 +393,7 @@ uint8_t TwoWireModified::endTransmission(uint8_t sendStop)
 		unsigned long waitStart = micros();
 		while(I2C0_S & I2C_S_BUSY) {	//spin
 			if(micros() - waitStart > I2C_WAIT_TIMEOUT){
+				CYCLE_CLOCK_LINE;
 				return 5;
 			}
 		}
