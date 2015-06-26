@@ -124,5 +124,5 @@ void AttitudeMeasurement::update(){
 	yaw = 0.98*predictedYaw + 0.02*getAccelerometerAxisAngle(YAW);
 
 	//debug!! vibration analysis
-	//analogWriteDAC0((getAxisAngleRate(PITCH)+INT_SHORT_MAX)*4069/(INT_SHORT_MAX*2));
+	analogWriteDAC0((getAccelerometerAxisAngle(PITCH)+INT_SHORT_MAX)*4069/(INT_SHORT_MAX*2));
 }

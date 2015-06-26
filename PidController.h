@@ -9,6 +9,7 @@ private:
 	uint32_t lastUpdate;
 	float errorIntegral;
 	float lastError;
+	float lastInput;
 	float iCap;
 
 	LowPassSensorFilter<float> dFilter;

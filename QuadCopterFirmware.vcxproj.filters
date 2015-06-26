@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Modified Wire lib\utility">
       <UniqueIdentifier>{a0791648-a2c3-4156-a9e0-43c455ad87fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Data Processing">
+      <UniqueIdentifier>{f6f5893c-0fa3-4284-a099-cc27895f6168}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="QuadCopterFirmware.ino" />
@@ -94,11 +97,11 @@
     <ClInclude Include="FlightController.h">
       <Filter>Source Files\Flight Control</Filter>
     </ClInclude>
-    <ClInclude Include="LowPassSensorFilter.h">
-      <Filter>Source Files\Flight Control</Filter>
-    </ClInclude>
     <ClInclude Include="WireModified.h">
       <Filter>Source Files\Modified Wire lib</Filter>
+    </ClInclude>
+    <ClInclude Include="LowPassSensorFilter.h">
+      <Filter>Source Files\Data Processing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

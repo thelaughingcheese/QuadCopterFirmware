@@ -41,6 +41,10 @@ void FlightController::begin(){
 			quadCopter->yaw = 0;
 			quadCopter->update();
 
+			pitchControl.resetIComponent();
+			rollControl.resetIComponent();
+			yawControl.resetIComponent();
+
 			DEBUGSPRINTLN("Throttle cut!");
 
 			continue;
@@ -49,9 +53,9 @@ void FlightController::begin(){
 
 		#pragma region attitude control mode
 		if(flightMode == ATTITUDE_CONTROLLED){
-			pitchControl.setGains(20,0,0);
-			rollControl.setGains(20,0,0);
-			yawControl.setGains(0,0,0);
+			pitchControl.setGains(40,0,5);
+			rollControl.setGains(40,0,5);
+			yawControl.setGains(10,0,0);
 
 			//read receiver, convert to angle
 			long pitchAngle = (PITCH_CHANNEL*MAXANGLE)/CHMAXVAL;

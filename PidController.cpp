@@ -34,9 +34,11 @@ float PidController::update(float input){
 
 	float pComponent = error * pGain;
 	float iComponent = errorIntegral;
-	float dComponent = dFilter.update(error - lastError)*invDeltaTime*dGain;
+	//float dComponent = dFilter.update(error - lastError)*invDeltaTime*dGain;
+	float dComponent = dFilter.update(input - lastInput)*invDeltaTime*dGain;
 
 	lastError = error;
+	lastInput = input;
 
 	return pComponent + iComponent + dComponent;
 }
