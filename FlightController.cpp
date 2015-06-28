@@ -8,7 +8,7 @@ rollControl(0,0,0),
 yawControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
-	setMode(ATTITUDE_CONTROLLED);
+	setMode(RAW_CONTROLLED);
 
 	pitchControl.setICap(8000);
 	rollControl.setICap(8000);

@@ -7,9 +7,9 @@ AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z):
 gyroXFilter(10),
 gyroYFilter(10),
 gyroZFilter(10),
-accelXFilter(80),
-accelYFilter(80),
-accelZFilter(80){
+accelXFilter(20),
+accelYFilter(20),
+accelZFilter(20){
 	xMapping = X;
 	yMapping = Y;
 	zMapping = Z;
