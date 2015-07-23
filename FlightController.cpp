@@ -70,9 +70,9 @@ void FlightController::begin(){
 			//update pid
 			attitudeMeasurement->update();
 			long throttleOut = (THROTTLE_CHANNEL*INT_SHORT_MAX)/(CHMAXVAL*2);
-			long pitchOut = /*pitchControl.update(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH));*/0;
+			long pitchOut = pitchControl.update(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH));0;
 			long rollOut = rollControl.update(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::ROLL));
-			long yawOut = /*yawControl.update(-attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW));*/0;			//flipped!!!
+			long yawOut = yawControl.update(-attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW));0;			//flipped!!!
 
 			//update quadcopter
 			quadCopter->throttle = min(max(throttleOut,INT_SHORT_MIN),INT_SHORT_MAX);
