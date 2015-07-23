@@ -2,11 +2,11 @@
 #define ESC
 
 #include "Arduino.h"
-#include <Servo.h>
+#include "ServoModified.h"
 
 class Esc{
 private:
-	Servo esc;
+	ServoModified esc;
 	long maxPulse;
 	long minPulse;
 

@@ -71,6 +71,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <AttitudeMeasurement.h>
 #include <Barometer.cpp>
 #include <Barometer.h>
+#include <DataLogger.cpp>
+#include <DataLogger.h>
 #include <Esc.cpp>
 #include <Esc.h>
 #include <EscConfiguration.h>
@@ -84,6 +86,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Gyroscope.h>
 #include <I2cDevice.cpp>
 #include <I2cDevice.h>
+#include <LowPassDerivativeFilter.cpp>
+#include <LowPassDerivativeFilter.h>
 #include <LowPassSensorFilter.h>
 #include <Magnetometer.cpp>
 #include <Magnetometer.h>
@@ -93,6 +97,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <QuadCopter.h>
 #include <ReceiverInput.cpp>
 #include <ReceiverInput.h>
+#include <ServoModified.cpp>
+#include <ServoModified.h>
 #include <WireModified.cpp>
 #include <WireModified.h>
 #include <tests.cpp>

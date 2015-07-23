@@ -9,8 +9,8 @@ volatile unsigned long ch4Start = 0;
 volatile unsigned long ch5Start = 0;
 volatile unsigned long ch6Start = 0;
 volatile unsigned long ch7Start = 0;
-volatile unsigned long ch8Start = 0;
-volatile unsigned long ch9Start = 0;
+//volatile unsigned long ch8Start = 0;
+//volatile unsigned long ch9Start = 0;
 
 //input values
 volatile long ch1 = 0;
@@ -20,8 +20,8 @@ volatile long ch4 = 0;
 volatile long ch5 = 0;
 volatile long ch6 = 0;
 volatile long ch7 = 0;
-volatile long ch8 = 0;
-volatile long ch9 = 0;
+//volatile long ch8 = 0;
+//volatile long ch9 = 0;
 
 volatile long channelCenterValue;
 
@@ -33,7 +33,7 @@ void setupReceiverInput(){
 	pinMode(CH5PIN,INPUT);
 	pinMode(CH6PIN,INPUT);
 	pinMode(CH7PIN,INPUT);
-	pinMode(CH8PIN,INPUT);
+	//pinMode(CH8PIN,INPUT);
 	//pinMode(CH9PIN,INPUT);
 
 	attachInterrupt(CH1PIN,ch1Change,CHANGE);
@@ -43,7 +43,7 @@ void setupReceiverInput(){
 	attachInterrupt(CH5PIN,ch5Change,CHANGE);
 	attachInterrupt(CH6PIN,ch6Change,CHANGE);
 	attachInterrupt(CH7PIN,ch7Change,CHANGE);
-	attachInterrupt(CH8PIN,ch8Change,CHANGE);
+	//attachInterrupt(CH8PIN,ch8Change,CHANGE);
 	//attachInterrupt(CH9PIN,ch9Change,CHANGE);
 }
 
@@ -84,10 +84,10 @@ void ch7Change(){
 	if(digitalReadFast(CH7PIN)){ ch7Start=micros(); }
 	else{ ch7=micros()-ch7Start; }
 }
-void ch8Change(){
+/*void ch8Change(){
 	if(digitalReadFast(CH8PIN)){ ch8Start=micros(); }
 	else{ ch8=micros()-ch8Start; }
-}
+}*/
 /*void ch9Change(){
 	if(digitalReadFast(CH9PIN)){ ch9Start=micros(); }
 	else{ ch9=micros()-ch9Start; }

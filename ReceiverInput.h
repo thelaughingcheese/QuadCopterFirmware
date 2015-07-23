@@ -14,7 +14,7 @@
 #define CH5PIN 7
 #define CH6PIN 8
 #define CH7PIN 9
-#define CH8PIN 10
+//#define CH8PIN 10
 
 //SAFETEY LIMITS!!!
 
@@ -34,7 +34,7 @@ extern volatile unsigned long ch4Start;
 extern volatile unsigned long ch5Start;
 extern volatile unsigned long ch6Start;
 extern volatile unsigned long ch7Start;
-extern volatile unsigned long ch8Start;
+//extern volatile unsigned long ch8Start;
 //extern volatile long ch9Start;
 
 //input values
@@ -45,7 +45,7 @@ extern volatile long ch4;
 extern volatile long ch5;
 extern volatile long ch6;
 extern volatile long ch7;
-extern volatile long ch8;
+//extern volatile long ch8;
 //extern volatile long ch9;
 
 extern volatile long channelCenterValue;
@@ -60,7 +60,7 @@ void ch4Change();
 void ch5Change();
 void ch6Change();
 void ch7Change();
-void ch8Change();
+//void ch8Change();
 //void ch9Change();
 
 #endif

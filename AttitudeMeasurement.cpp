@@ -4,9 +4,9 @@
 #define MICRO_TO_SEC_RATIO 0.000001
 
 AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z):
-gyroXFilter(10),
-gyroYFilter(10),
-gyroZFilter(10),
+gyroXFilter(20),
+gyroYFilter(20),
+gyroZFilter(20),
 accelXFilter(20),
 accelYFilter(20),
 accelZFilter(20){
@@ -124,5 +124,5 @@ void AttitudeMeasurement::update(){
 	yaw = 0.98*predictedYaw + 0.02*getAccelerometerAxisAngle(YAW);
 
 	//debug!! vibration analysis
-	analogWriteDAC0((getAccelerometerAxisAngle(PITCH)+INT_SHORT_MAX)*4069/(INT_SHORT_MAX*2));
+	analogWriteDAC0(((getAccelerometerAxisAngle(PITCH))*100000/(90)) + 2048);
 }

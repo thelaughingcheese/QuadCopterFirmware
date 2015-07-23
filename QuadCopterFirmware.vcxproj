@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\cores\teensy3;G:\git\QuadCopterFirmware;G:\Program Files E\Arduino\arduino-1.0.6\libraries\Servo;G:\Program Files E\Arduino\arduino-1.0.6\libraries\Servo\utility;G:\Program Files E\Arduino\arduino-1.0.6\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\libraries;G:\Program Files e (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers;C:\Users\Jason\Documents\Arduino\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\cores\teensy3;G:\git\QuadCopterFirmware;G:\Program Files E\Arduino\arduino-1.0.6\libraries\SD;G:\Program Files E\Arduino\arduino-1.0.6\libraries\SD\utility;G:\Program Files E\Arduino\arduino-1.0.6\libraries\SPI;G:\Program Files E\Arduino\arduino-1.0.6\libraries\SPI\utility;G:\Program Files E\Arduino\arduino-1.0.6\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\teensy\libraries;G:\Program Files e (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers;C:\Users\Jason\Documents\Arduino\libraries;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\arm\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include;G:\Program Files E\Arduino\arduino-1.0.6\hardware\tools\arm\lib\gcc\arm-none-eabi\4.8.4\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>G:\git\QuadCopterFirmware\Visual Micro\.QuadCopterFirmware.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__ARM_MK20dx256__;__ARM_MK20DX256__;ARDUINO=106;ARDUINO_MAIN;__AVR__;__avr__;F_CPU=96000000;USB_SERIAL_HID;LAYOUT_US_ENGLISH;__cplusplus;GCC_VERSION=40804;ARDUINO_ARCH_AVR;ARDUINO_AVR_TEENSY31;__MK20DX256__;TEENSYDUINO=122;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -76,6 +76,7 @@
     <ClInclude Include="Accelerometer.h" />
     <ClInclude Include="AttitudeMeasurement.h" />
     <ClInclude Include="Barometer.h" />
+    <ClInclude Include="DataLogger.h" />
     <ClInclude Include="Esc.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -90,6 +91,7 @@
     <ClInclude Include="GPS.h" />
     <ClInclude Include="Gyroscope.h" />
     <ClInclude Include="I2cDevice.h" />
+    <ClInclude Include="LowPassDerivativeFilter.h" />
     <ClInclude Include="LowPassSensorFilter.h" />
     <ClInclude Include="Magnetometer.h" />
     <ClInclude Include="PidController.h" />
@@ -97,6 +99,7 @@
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClInclude Include="ReceiverInput.h" />
+    <ClInclude Include="ServoModified.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Visual Micro\.QuadCopterFirmware.vsarduino.h" />
     <ClInclude Include="WireModified.h" />
@@ -105,15 +108,18 @@
     <ClCompile Include="Accelerometer.cpp" />
     <ClCompile Include="AttitudeMeasurement.cpp" />
     <ClCompile Include="Barometer.cpp" />
+    <ClCompile Include="DataLogger.cpp" />
     <ClCompile Include="Esc.cpp" />
     <ClCompile Include="EscStartupManager.cpp" />
     <ClCompile Include="FlightController.cpp" />
     <ClCompile Include="Gyroscope.cpp" />
     <ClCompile Include="I2cDevice.cpp" />
+    <ClCompile Include="LowPassDerivativeFilter.cpp" />
     <ClCompile Include="Magnetometer.cpp" />
     <ClCompile Include="PidController.cpp" />
     <ClCompile Include="QuadCopter.cpp" />
     <ClCompile Include="ReceiverInput.cpp" />
+    <ClCompile Include="ServoModified.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="WireModified.cpp" />
   </ItemGroup>

@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "LowPassSensorFilter.h"
+#include "LowPassDerivativeFilter.h"
 
 class PidController{
 private:
@@ -13,6 +14,7 @@ private:
 	float iCap;
 
 	LowPassSensorFilter<float> dFilter;
+	LowPassDerivativeFilter dFilter2;
 public:
 	float pGain,iGain,dGain;
 	float target;

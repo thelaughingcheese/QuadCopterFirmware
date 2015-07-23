@@ -34,10 +34,10 @@ Gyroscope::Gyroscope(): I2cDevice(L2GD20H_ADDRESS){
 
 	//clear and set config reg 1
 	writeRegister(GYRO_REGISTER_CTRL_REG1,0x00);
-	writeRegister(GYRO_REGISTER_CTRL_REG1,0xff);
+	writeRegister(GYRO_REGISTER_CTRL_REG1,0xef);
 
 	//set config reg 4, default 245 dps
-	maxAngularVelocity = DPS245;
+	maxAngularVelocity = DPS500;
 	writeRegister(GYRO_REGISTER_CTRL_REG4,maxAngularVelocity);
 
 	x=0;y=0;z=0;

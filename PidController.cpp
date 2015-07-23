@@ -1,9 +1,11 @@
 #include "PidController.h"
+#include "DataLogger.h"
 
 #define MICRO_TO_SEC_RATIO 0.000001
 
 PidController::PidController(float p,float i,float d):
-dFilter(15){
+dFilter(15),
+dFilter2(10){
 	setGains(p,i,d);
 	resetIComponent();
 	setICap(0);
@@ -34,8 +36,28 @@ float PidController::update(float input){
 
 	float pComponent = error * pGain;
 	float iComponent = errorIntegral;
-	//float dComponent = dFilter.update(error - lastError)*invDeltaTime*dGain;
-	float dComponent = dFilter.update(input - lastInput)*invDeltaTime*dGain;
+	//float dComponent = dFilter2.update(error)*invDeltaTime*dGain;
+	float dComponent = -dFilter2.update(input)*invDeltaTime*dGain;
+
+
+
+	pbuff[buffIndex] = pComponent;
+	ibuff[buffIndex] = iComponent;
+	dbuff[buffIndex] = dComponent;
+	buffIndex++;
+	if(buffIndex == 4000){
+		quadinst->pitch = 0; quadinst->roll = 0; quadinst->yaw = 0; quadinst->throttle = 0;
+		quadinst->update();
+
+		LogData();
+
+		for(;;){
+			quadinst->pitch = 0; quadinst->roll = 0; quadinst->yaw = 0; quadinst->throttle = 0;
+			quadinst->update();
+		}
+	}
+
+
 
 	lastError = error;
 	lastInput = input;

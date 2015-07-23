@@ -1,10 +1,13 @@
-#include <Servo.h>
+#include "ServoModified.h"
 #include "Globals.h"
 //#include <Wire.h>
 #include "ReceiverInput.h"
 #include "QuadCopter.h"
 #include "AttitudeMeasurement.h"
 #include "FlightController.h"
+#include <SPI.h>
+#include <SD.h>
+#include "DataLogger.h"
 
 #include "tests.h"
 
@@ -34,6 +37,7 @@ void loop()
 	QuadCopter quadCopter(3,4,5,6,2000,700);
 	quadCopter.startUpNormal();
 	//quadCopter.startSetConfigAndStart(config);
+quadinst=&quadCopter;
 
 	AttitudeMeasurement attitudeMeasurement(AttitudeMeasurement::PITCH,AttitudeMeasurement::ROLL,AttitudeMeasurement::YAW);
 	DEBUGSPRINTLN("GO!");

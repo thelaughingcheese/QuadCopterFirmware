@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Data Processing">
       <UniqueIdentifier>{f6f5893c-0fa3-4284-a099-cc27895f6168}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Modified Servo lib">
+      <UniqueIdentifier>{1738dd02-f732-4321-a422-32e8d2585bb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="QuadCopterFirmware.ino" />
@@ -103,6 +106,15 @@
     <ClInclude Include="LowPassSensorFilter.h">
       <Filter>Source Files\Data Processing</Filter>
     </ClInclude>
+    <ClInclude Include="LowPassDerivativeFilter.h">
+      <Filter>Source Files\Data Processing</Filter>
+    </ClInclude>
+    <ClInclude Include="ServoModified.h">
+      <Filter>Source Files\Modified Servo lib</Filter>
+    </ClInclude>
+    <ClInclude Include="DataLogger.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Accelerometer.cpp">
@@ -144,6 +156,15 @@
     </ClCompile>
     <ClCompile Include="WireModified.cpp">
       <Filter>Source Files\Modified Wire lib</Filter>
+    </ClCompile>
+    <ClCompile Include="LowPassDerivativeFilter.cpp">
+      <Filter>Source Files\Data Processing</Filter>
+    </ClCompile>
+    <ClCompile Include="ServoModified.cpp">
+      <Filter>Source Files\Modified Servo lib</Filter>
+    </ClCompile>
+    <ClCompile Include="DataLogger.cpp">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ rollControl(0,0,0),
 yawControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
-	setMode(RAW_CONTROLLED);
+	setMode(ATTITUDE_CONTROLLED);
 
 	pitchControl.setICap(8000);
 	rollControl.setICap(8000);
@@ -53,9 +53,9 @@ void FlightController::begin(){
 
 		#pragma region attitude control mode
 		if(flightMode == ATTITUDE_CONTROLLED){
-			pitchControl.setGains(40,0,5);
-			rollControl.setGains(40,0,5);
-			yawControl.setGains(10,0,0);
+			pitchControl.setGains(120,180,25);
+			rollControl.setGains(130,20,12.5);
+			yawControl.setGains(40,0,0);
 
 			//read receiver, convert to angle
 			long pitchAngle = (PITCH_CHANNEL*MAXANGLE)/CHMAXVAL;
@@ -70,9 +70,9 @@ void FlightController::begin(){
 			//update pid
 			attitudeMeasurement->update();
 			long throttleOut = (THROTTLE_CHANNEL*INT_SHORT_MAX)/(CHMAXVAL*2);
-			long pitchOut = pitchControl.update(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH));
+			long pitchOut = /*pitchControl.update(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::PITCH));*/0;
 			long rollOut = rollControl.update(attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::ROLL));
-			long yawOut = yawControl.update(-attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW));			//flipped!!!
+			long yawOut = /*yawControl.update(-attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::YAW));*/0;			//flipped!!!
 
 			//update quadcopter
 			quadCopter->throttle = min(max(throttleOut,INT_SHORT_MIN),INT_SHORT_MAX);
@@ -129,6 +129,8 @@ void FlightController::begin(){
 			long rollOut = (ROLL_CHANNEL*INT_SHORT_MAX)/CHMAXVAL;
 			long yawOut = (YAW_CHANNEL*INT_SHORT_MAX)/CHMAXVAL;
 			long throttleOut = (THROTTLE_CHANNEL*INT_SHORT_MAX)/(CHMAXVAL*2);
+
+			attitudeMeasurement->update();
 
 			//update quadcopter
 			quadCopter->throttle = min(max(throttleOut,INT_SHORT_MIN),INT_SHORT_MAX);
