@@ -6,8 +6,8 @@
 
 #define DATALOGGERDATALENGTH 4000
 extern int buffIndex;
+extern float tbuff[DATALOGGERDATALENGTH];
 extern float pbuff[DATALOGGERDATALENGTH];
-extern float ibuff[DATALOGGERDATALENGTH];
 extern float dbuff[DATALOGGERDATALENGTH];
 extern QuadCopter* quadinst;
 

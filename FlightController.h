@@ -19,9 +19,13 @@ private:
 	AttitudeMeasurement* attitudeMeasurement;
 	FlightMode flightMode;
 
-	PidController pitchControl;
-	PidController rollControl;
-	PidController yawControl;
+	PidController pitchAttitudeControl;
+	PidController rollAttitudeControl;
+	PidController yawAttitudeControl;
+
+	PidController pitchVelocityControl;
+	PidController rollVelocityControl;
+	PidController yawVelocityControl;
 public:
 	FlightController(QuadCopter* copter, AttitudeMeasurement* att);
 	void setMode(FlightMode mode);

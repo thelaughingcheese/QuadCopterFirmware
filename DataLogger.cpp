@@ -4,8 +4,8 @@
 #include "Globals.h"
 
 int buffIndex = 0;
+float tbuff[DATALOGGERDATALENGTH];
 float pbuff[DATALOGGERDATALENGTH];
-float ibuff[DATALOGGERDATALENGTH];
 float dbuff[DATALOGGERDATALENGTH];
 QuadCopter* quadinst;
 
@@ -39,9 +39,8 @@ void LogData(){
 	myFile = SD.open(logCountBuffer,FILE_WRITE);
 
 	for(int i=0;i<DATALOGGERDATALENGTH;i++){
-		myFile.print(pbuff[i],8); myFile.print(",");
-		myFile.print(ibuff[i],8); myFile.print(",");
-		myFile.println(dbuff[i],8);
+		myFile.print(tbuff[i],8); myFile.print(",");
+		myFile.println(pbuff[i],8);
 	}
 
 	myFile.close();
