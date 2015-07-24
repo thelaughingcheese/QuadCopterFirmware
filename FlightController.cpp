@@ -8,7 +8,7 @@ rollControl(0,0,0),
 yawControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
-	setMode(ATTITUDE_CONTROLLED);
+	setMode(RATE_CONTROLLED);
 
 	pitchControl.setICap(8000);
 	rollControl.setICap(8000);
@@ -112,13 +112,6 @@ void FlightController::begin(){
 			quadCopter->roll = min(max(rollOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->yaw = min(max(yawOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->update();
-
-			
-			DEBUGSPRINT(quadCopter->throttle); DEBUGSPRINT(", ");
-			DEBUGSPRINT(quadCopter->pitch); DEBUGSPRINT(", ");
-			DEBUGSPRINT(quadCopter->roll); DEBUGSPRINT(", ");
-			DEBUGSPRINT(quadCopter->yaw); DEBUGSPRINT("\n");
-			
 		}
 		#pragma endregion
 
