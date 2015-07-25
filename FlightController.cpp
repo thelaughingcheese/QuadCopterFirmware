@@ -6,7 +6,10 @@
 FlightController::FlightController(QuadCopter* copter,AttitudeMeasurement* att):
 pitchAttitudeControl(0,0,0),
 rollAttitudeControl(0,0,0),
-yawAttitudeControl(0,0,0){
+yawAttitudeControl(0,0,0),
+pitchVelocityControl(0,0,0),
+rollVelocityControl(0,0,0),
+yawVelocityControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
 	setMode(RATE_CONTROLLED);
@@ -50,6 +53,10 @@ void FlightController::begin(){
 			rollAttitudeControl.resetIComponent();
 			yawAttitudeControl.resetIComponent();
 
+			pitchVelocityControl.resetIComponent();
+			rollVelocityControl.resetIComponent();
+			yawVelocityControl.resetIComponent();
+
 			DEBUGSPRINTLN("Throttle cut!");
 
 			continue;
@@ -58,9 +65,12 @@ void FlightController::begin(){
 
 		#pragma region attitude control mode
 		if(flightMode == ATTITUDE_CONTROLLED){
-			pitchAttitudeControl.setGains(120,180,25);
-			rollAttitudeControl.setGains(130,20,12.5);
-			yawAttitudeControl.setGains(40,0,0);
+			pitchAttitudeControl.setGains(10,0,0);
+			rollAttitudeControl.setGains(10,0,0);
+
+			pitchVelocityControl.setGains(15,120,0);
+			rollVelocityControl.setGains(15,120,0);
+			yawVelocityControl.setGains(100,10,0);
 
 			//read receiver, convert to angle
 			long pitchAngle = (PITCH_CHANNEL*MAXANGLE)/CHMAXVAL;
@@ -98,9 +108,9 @@ void FlightController::begin(){
 
 		#pragma region rate control mode
 		else if(flightMode == RATE_CONTROLLED){
-			pitchVelocityControl.setGains(100,0,0);
-			rollVelocityControl.setGains(100,0,0);
-			yawVelocityControl.setGains(100,0,0);
+			pitchVelocityControl.setGains(15,120,0);
+			rollVelocityControl.setGains(15,120,0);
+			yawVelocityControl.setGains(100,10,0);
 
 			//read receiver, convert to angle
 			long pitchRate = (PITCH_CHANNEL*90)/CHMAXVAL;
@@ -127,8 +137,9 @@ void FlightController::begin(){
 			quadCopter->update();
 
 			//logging
-			tbuff[buffIndex] = rollRate;
-			pbuff[buffIndex] = attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::ROLL);
+			/*tbuff[buffIndex] = rollRate;
+			pbuff[buffIndex] = rollVelocityControl.lastPComponent;
+			ibuff[buffIndex] = rollVelocityControl.lastIComponent;
 
 			buffIndex++;
 
@@ -142,7 +153,7 @@ void FlightController::begin(){
 					quadCopter->throttle = 0;quadCopter->pitch = 0;	quadCopter->roll = 0;quadCopter->yaw = 0;
 					quadCopter->update();
 				}
-			}
+			}*/
 		}
 		#pragma endregion
 

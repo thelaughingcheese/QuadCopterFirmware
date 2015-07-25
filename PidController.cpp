@@ -9,6 +9,7 @@ dFilter2(10){
 	resetIComponent();
 	setICap(0);
 
+	reset = true;
 	lastUpdate = micros();
 }
 
@@ -25,7 +26,15 @@ void PidController::setICap(float cap){
 float PidController::update(float input){
 	float error = target - input;
 
-	uint32_t deltaMicros = micros() - lastUpdate;
+	uint32_t deltaMicros;
+	if(reset){
+		deltaMicros = 1;
+		reset = false;
+	}
+	else{
+		deltaMicros = micros() - lastUpdate;
+	}
+
 	lastUpdate = micros();
 	float deltaTime = MICRO_TO_SEC_RATIO * deltaMicros;
 	float invDeltaTime = 1/deltaTime;
@@ -40,6 +49,10 @@ float PidController::update(float input){
 
 	lastError = error;
 	lastInput = input;
+
+	lastPComponent = pComponent;
+	lastIComponent = iComponent;
+	lastDComponent = dComponent;
 
 	return pComponent + iComponent + dComponent;
 }

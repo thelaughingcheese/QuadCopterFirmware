@@ -6,7 +6,7 @@
 int buffIndex = 0;
 float tbuff[DATALOGGERDATALENGTH];
 float pbuff[DATALOGGERDATALENGTH];
-float dbuff[DATALOGGERDATALENGTH];
+float ibuff[DATALOGGERDATALENGTH];
 QuadCopter* quadinst;
 
 void LogData(){
@@ -35,12 +35,14 @@ void LogData(){
 	myFile.close();
 
 	itoa(logCount,logCountBuffer,10);
+	strcat(logCountBuffer,".txt");
 
 	myFile = SD.open(logCountBuffer,FILE_WRITE);
 
 	for(int i=0;i<DATALOGGERDATALENGTH;i++){
 		myFile.print(tbuff[i],8); myFile.print(",");
-		myFile.println(pbuff[i],8);
+		myFile.print(pbuff[i],8); myFile.print(",");
+		myFile.println(ibuff[i],8);
 	}
 
 	myFile.close();

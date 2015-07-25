@@ -4,9 +4,9 @@
 #define MICRO_TO_SEC_RATIO 0.000001
 
 AttitudeMeasurement::AttitudeMeasurement(Axis X,Axis Y,Axis Z):
-gyroXFilter(20),
-gyroYFilter(20),
-gyroZFilter(20),
+gyroXFilter(10),
+gyroYFilter(10),
+gyroZFilter(10),
 accelXFilter(20),
 accelYFilter(20),
 accelZFilter(20){

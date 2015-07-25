@@ -8,7 +8,7 @@
 extern int buffIndex;
 extern float tbuff[DATALOGGERDATALENGTH];
 extern float pbuff[DATALOGGERDATALENGTH];
-extern float dbuff[DATALOGGERDATALENGTH];
+extern float ibuff[DATALOGGERDATALENGTH];
 extern QuadCopter* quadinst;
 
 void LogData();

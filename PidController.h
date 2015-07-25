@@ -15,6 +15,8 @@ private:
 
 	LowPassSensorFilter<float> dFilter;
 	LowPassDerivativeFilter dFilter2;
+
+	boolean reset;
 public:
 	float pGain,iGain,dGain;
 	float target;
@@ -24,6 +26,10 @@ public:
 	void setICap(float cap);
 	float update(float input);
 	void resetIComponent();
+
+	float lastPComponent;
+	float lastIComponent;
+	float lastDComponent;
 };
 
 #endif
