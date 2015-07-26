@@ -12,7 +12,7 @@ rollVelocityControl(0,0,0),
 yawVelocityControl(0,0,0){
 	quadCopter = copter;
 	attitudeMeasurement = att;
-	setMode(RATE_CONTROLLED);
+	setMode(ATTITUDE_CONTROLLED);
 
 	pitchVelocityControl.setICap(8000);
 	rollVelocityControl.setICap(8000);
@@ -57,6 +57,8 @@ void FlightController::begin(){
 			rollVelocityControl.resetIComponent();
 			yawVelocityControl.resetIComponent();
 
+			attitudeMeasurement->resetMeasurement();
+
 			DEBUGSPRINTLN("Throttle cut!");
 
 			continue;
@@ -65,8 +67,8 @@ void FlightController::begin(){
 
 		#pragma region attitude control mode
 		if(flightMode == ATTITUDE_CONTROLLED){
-			pitchAttitudeControl.setGains(10,0,0);
-			rollAttitudeControl.setGains(10,0,0);
+			pitchAttitudeControl.setGains(0.7,0.8,0.1);
+			rollAttitudeControl.setGains(0.7,0.8,0.1);
 
 			pitchVelocityControl.setGains(15,120,0);
 			rollVelocityControl.setGains(15,120,0);
@@ -103,6 +105,25 @@ void FlightController::begin(){
 			quadCopter->roll = min(max(rollOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->yaw = min(max(yawOut,INT_SHORT_MIN),INT_SHORT_MAX);
 			quadCopter->update();
+
+			//logging
+			tbuff[buffIndex] = rollAngle;
+			pbuff[buffIndex] = attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::ROLL);
+			ibuff[buffIndex] = rollAttitudeControl.lastIComponent;
+
+			buffIndex++;
+
+			if(buffIndex == 4000){
+				quadCopter->throttle = 0;quadCopter->pitch = 0;	quadCopter->roll = 0;quadCopter->yaw = 0;
+				quadCopter->update();
+
+				LogData();
+
+				for(;;){
+					quadCopter->throttle = 0;quadCopter->pitch = 0;	quadCopter->roll = 0;quadCopter->yaw = 0;
+					quadCopter->update();
+				}
+			}
 		}
 		#pragma endregion
 

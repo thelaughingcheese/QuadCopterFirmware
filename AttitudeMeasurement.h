@@ -41,6 +41,8 @@ private:
 	Axis yMapping;
 	Axis zMapping;
 	uint32_t lastUpdate;
+
+	boolean reset;
 public:
 	AttitudeMeasurement(Axis X,Axis Y,Axis Z);
 
@@ -52,6 +54,7 @@ public:
 	float getAxisAngleAbsolute(Axis axis);
 
 	void update();
+	void resetMeasurement();
 };
 
 #endif

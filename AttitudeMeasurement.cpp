@@ -20,6 +20,7 @@ accelZFilter(20){
 
 	gyroscope.calibrateOffset();
 
+	reset = true;
 	lastUpdate = micros();
 }
 
@@ -95,6 +96,10 @@ float AttitudeMeasurement::getAxisAngleAbsolute(Axis axis){
 	else if(axis == YAW) return yaw;
 }
 
+void AttitudeMeasurement::resetMeasurement(){
+	reset = true;
+}
+
 //does not encorporate magnetometer, uses complementary filter
 void AttitudeMeasurement::update(){
 	gyroscope.update();
@@ -111,7 +116,16 @@ void AttitudeMeasurement::update(){
 	accelZ = accelZFilter.update(accelerometer.z);
 
 	//calc absolute stuffs
-	uint32_t deltaMicroSeconds = micros() - lastUpdate;
+	uint32_t deltaMicroSeconds;
+	if(reset){
+		deltaMicroSeconds = 1;
+		reset = false;
+	}
+	else{
+		deltaMicroSeconds = micros() - lastUpdate;
+	}
+
+	
 	lastUpdate = micros();
 	float deltaTime = MICRO_TO_SEC_RATIO*deltaMicroSeconds;
 

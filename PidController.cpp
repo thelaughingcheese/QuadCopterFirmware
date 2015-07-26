@@ -59,4 +59,5 @@ float PidController::update(float input){
 
 void PidController::resetIComponent(){
 	errorIntegral = 0;
+	reset = true;
 }
