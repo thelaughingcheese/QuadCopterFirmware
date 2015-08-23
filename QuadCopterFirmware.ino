@@ -35,6 +35,7 @@ void loop()
 	EscConfiguration config;
 
 	QuadCopter quadCopter(3,4,5,6,2000,700);
+	quadCopterSafetyPtr = &quadCopter;
 	quadCopter.startUpNormal();
 	//quadCopter.startSetConfigAndStart(config);
 quadinst=&quadCopter;
