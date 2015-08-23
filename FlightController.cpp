@@ -42,7 +42,7 @@ void FlightController::begin(){
 
 	for(;;){
 		#pragma region safety throttle cut
-		if(THROTTLE_CUT_CHANNEL < 0){
+		if(THROTTLE_CUT_CHANNEL < 0 || (THROTTLE_CHANNEL*INT_SHORT_MAX)/(CHMAXVAL*2) < 0){
 			quadCopter->throttle = 0;
 			quadCopter->pitch = 0;
 			quadCopter->roll = 0;
@@ -62,6 +62,15 @@ void FlightController::begin(){
 			DEBUGSPRINTLN("Throttle cut!");
 
 			continue;
+		}
+		#pragma endregion
+
+		#pragma region mode setting
+		if(MODE_CHANNEL < 0){
+			flightMode = RATE_CONTROLLED;
+		}
+		else{
+			flightMode = ATTITUDE_CONTROLLED;
 		}
 		#pragma endregion
 

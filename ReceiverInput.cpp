@@ -25,7 +25,7 @@ volatile long ch7 = 0;
 
 volatile long channelCenterValue;
 
-volatile Quadcopter* quadCopterSafetyPtr = 0;
+QuadCopter* volatile quadCopterSafetyPtr = 0;
 
 void setupReceiverInput(){
 	pinMode(CH1PIN,INPUT);

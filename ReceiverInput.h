@@ -2,7 +2,7 @@
 #define RECEIVERINPUT
 
 #include "Arduino.h"
-#include "Quadcopter.h"
+#include "QuadCopter.h"
 
 #define CHCENTERVAL 1490
 #define CHMAXVAL 430
@@ -52,7 +52,7 @@ extern volatile long ch7;
 extern volatile long channelCenterValue;
 
 //safety cut MUST BE SET 
-extern volatile Quadcopter* quadCopterSafetyPtr;
+extern QuadCopter* volatile quadCopterSafetyPtr;
 
 void setupReceiverInput();
 void calibrateChannelCenterValue();
