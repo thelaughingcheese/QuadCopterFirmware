@@ -107,11 +107,20 @@ void FlightController::begin(){
 			quadCopter->update();
 
 			//logging
+			//roll angle
+			/*
 			tbuff[buffIndex] = rollAngle;
 			pbuff[buffIndex] = attitudeMeasurement->getAxisAngleAbsolute(AttitudeMeasurement::ROLL);
 			ibuff[buffIndex] = rollAttitudeControl.lastIComponent;
+			*/
+			//target angualar velocity
+			/*
+			tbuff[buffIndex] = rollRate;
+			pbuff[buffIndex] = attitudeMeasurement->getAxisAngleRate(AttitudeMeasurement::ROLL);
+			ibuff[buffIndex] = rollVelocityControl.lastIComponent;
 
 			buffIndex++;
+			
 
 			if(buffIndex == 4000){
 				quadCopter->throttle = 0;quadCopter->pitch = 0;	quadCopter->roll = 0;quadCopter->yaw = 0;
@@ -123,7 +132,7 @@ void FlightController::begin(){
 					quadCopter->throttle = 0;quadCopter->pitch = 0;	quadCopter->roll = 0;quadCopter->yaw = 0;
 					quadCopter->update();
 				}
-			}
+			}*/
 		}
 		#pragma endregion
 
