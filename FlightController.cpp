@@ -61,9 +61,15 @@ void FlightController::begin(){
 
 			DEBUGSPRINTLN("Throttle cut!");
 
+			//turn on light when disarmed
+			digitalWriteFast(13,HIGH);
+
 			continue;
 		}
 		#pragma endregion
+
+		//turn off light when armed
+		digitalWriteFast(13,LOW);
 
 		#pragma region mode setting
 		if(MODE_CHANNEL < 0){
